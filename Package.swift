@@ -32,7 +32,10 @@ let package = Package(
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]
     ),
-    .target(name: "AdventCommon"),
+    .target(
+      name: "AdventCommon",
+      dependencies: ["LASwift"]
+    ),
     .target(
       name: "Advent2020",
       dependencies: [
