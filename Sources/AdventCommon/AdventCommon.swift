@@ -47,19 +47,61 @@ extension Int {
   }
 }
 
-public struct Bag<Element: Hashable> {
-  private var storage: [Element: Int]
+public struct Bag<E: Hashable>: ExpressibleByArrayLiteral {
+  public typealias Storage = [E: Int]
 
-  public init<S: Sequence>(_ sequence: S) where S.Element == Element {
-    self.storage = [Element: [Element]](grouping: sequence) { $0 }.mapValues(\.count)
+  private var storage: Storage
+
+  public init<S: Sequence>(_ sequence: S) where S.Element == E {
+    self.storage = [E: [S.Element]](grouping: sequence) { $0 }.mapValues(\.count)
   }
 
-  mutating func add(_ element: Element) {
+  public init() {
+    self.storage = [:]
+  }
+
+  public init(arrayLiteral elements: E...) {
+    self.init(elements)
+  }
+
+  public mutating func add(_ element: E) {
     storage[element] = storage[element, default: 0] + 1
   }
 
-  public subscript(_ element: Element) -> Int {
+  public subscript(_ element: E) -> Int {
     storage[element, default: 0]
+  }
+
+  public func adding(_ element: E) -> Self {
+    var bag = self
+    bag.add(element)
+    return bag
+  }
+
+  public var counts: Storage.Values { storage.values }
+}
+
+extension Bag: Sequence {
+  public func makeIterator() -> Storage.Iterator {
+    storage.makeIterator()
+  }
+}
+
+extension Bag: Collection {
+  public var endIndex: Storage.Index {
+    storage.endIndex
+  }
+
+  public var startIndex: Storage.Index {
+    storage.startIndex
+  }
+
+  public subscript(index: Storage.Index) -> Storage.Element {
+    storage[index]
+  }
+
+  public func index(after i: Storage.Index) -> Storage.Index {
+    storage.index(after: i)
   }
 }
 
