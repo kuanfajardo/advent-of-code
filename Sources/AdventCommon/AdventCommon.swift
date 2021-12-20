@@ -64,8 +64,8 @@ public struct Bag<E: Hashable>: ExpressibleByArrayLiteral {
     self.init(elements)
   }
 
-  public mutating func add(_ element: E) {
-    storage[element] = storage[element, default: 0] + 1
+  public mutating func add(_ element: E, count: Int = 1) {
+    storage[element] = storage[element, default: 0] + count
   }
 
   public subscript(_ element: E) -> Int {
@@ -102,6 +102,17 @@ extension Bag: Collection {
 
   public func index(after i: Storage.Index) -> Storage.Index {
     storage.index(after: i)
+  }
+}
+
+extension Bag: CustomStringConvertible {
+  public var description: String { String(describing: storage) }
+}
+
+extension Bag: ExpressibleByDictionaryLiteral {
+
+  public init(dictionaryLiteral elements: (E, Int)...) {
+    self.storage = .init(uniqueKeysWithValues: elements)
   }
 }
 
