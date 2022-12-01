@@ -7,7 +7,7 @@ public struct Day6: AdventDay {
   public static let day = 6
 
   public static func run(input: String) throws -> Any {
-    let fishAges = try Int.matches(in: input)
+    let fishAges = Int.matches(in: input)
     return (
       partOne: numberOfLanternfish(afterDays: 80, startingFishAges: fishAges), // 374927
       partTwo: numberOfLanternfish(afterDays: 256, startingFishAges: fishAges)  // 1687617803407

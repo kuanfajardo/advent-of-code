@@ -16,9 +16,9 @@ public struct Day13: AdventDay {
 
     static let regex: Regex = #"fold along (?<axis>x|y)=(?<position>\d+)"#
 
-    init(match: Match) throws {
-      self.axis = try match.captureGroup(named: "axis", as: Axis.self)
-      self.position = try match.captureGroup(named: "position", as: Int.self)
+    init(match: Match) {
+      self.axis = match["axis", as: Axis.self]!
+      self.position = match["position", as: Int.self]!
     }
   }
 
@@ -28,9 +28,9 @@ public struct Day13: AdventDay {
 
     static let regex: Regex = #"(?<x>\d+),(?<y>\d+)"#
 
-    init(match: Match) throws {
-      self.x = try match.captureGroup(named: "x", as: Int.self)
-      self.y = try match.captureGroup(named: "y", as: Int.self)
+    init(match: Match) {
+      self.x = match["x", as: Int.self]!
+      self.y = match["y", as: Int.self]!
     }
 
     init(x: Int, y: Int) {
@@ -85,8 +85,8 @@ public struct Day13: AdventDay {
   }
 
   public static func run(input: String) throws -> Any {
-    let dots = try Dot.matches(in: input)
-    let folds = try Fold.matches(in: input)
+    let dots = Dot.matches(in: input)
+    let folds = Fold.matches(in: input)
 
     let startingPaper = Paper(dots: Set(dots))
 

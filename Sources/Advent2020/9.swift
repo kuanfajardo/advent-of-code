@@ -8,7 +8,7 @@ public struct Day9: AdventDay {
   public static let day = 9
 
   public static func run(input: String) throws -> Any {
-    let numbers = try Int.matches(in: input)
+    let numbers = Int.matches(in: input)
 
     let firstInvalidNumber = firstInvalidNumber(in: numbers)
     let contiguousSummands = try firstContiguousListOfNumbers(in: numbers, thatAddTo: firstInvalidNumber)

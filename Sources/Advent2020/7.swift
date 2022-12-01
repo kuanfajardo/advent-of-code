@@ -14,9 +14,9 @@ public struct Day7: AdventDay {
       
       static var regex: Regex = #"(?<quantity>[0-9]+) (?<color>[\w\s]+) bag(s)?"#
       
-      init(match: Match) throws {
-        self.color = try match.captureGroup(named: "color").trimmingCharacters(in: .whitespaces)
-        self.quantity = try match.captureGroup(named: "quantity", as: Int.self)
+      init?(match: Match) {
+        self.color = match["color"]!.trimmingCharacters(in: .whitespaces)
+        self.quantity = match["quantity", as: Int.self]!
       }
     }
     
@@ -25,20 +25,20 @@ public struct Day7: AdventDay {
     let color: String
     let allowedBags: [ContainmentRule]
     
-    init(match: Match) throws {
-      self.color = try match.captureGroup(named: "color").trimmingCharacters(in: .whitespaces)
+    init(match: Match) {
+      self.color = match["color"]!.trimmingCharacters(in: .whitespaces)
       
-      let rulesClause = try match.captureGroup(named: "rules")
+      let rulesClause = match["rules"]!
       if rulesClause == "no other bags" {
         self.allowedBags = []
       } else {
-        self.allowedBags = try ContainmentRule.matches(in: rulesClause)
+        self.allowedBags = ContainmentRule.matches(in: rulesClause)
       }
     }
   }
   
   public static func run(input: String) throws -> Any {
-    let rules = try BagRule.matches(in: input)
+    let rules = BagRule.matches(in: input)
     return (
       partOne: numberOfBagColorsThatCanContainAShinyGoldBag(rules: rules),  // 139
       partTwo: numberOfBagsRequiredInsideShinyGoldBag(rules: rules)  // 58175

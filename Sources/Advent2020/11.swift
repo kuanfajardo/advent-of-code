@@ -22,8 +22,8 @@ public struct Day11: AdventDay {
 
       static let regex: Regex = #"(L|\.|#)"#
 
-      init(match: Match) throws {
-        guard let rawValue = match.entireMatch.first else { throw AdventError.malformedInput }
+      init?(match: Match) {
+        guard let rawValue = match.text.first else { return nil }
         self.init(rawValue: rawValue)!
       }
     }
@@ -58,8 +58,8 @@ public struct Day11: AdventDay {
 
   public static func run(input: String) throws -> Any {
     let rowRegex: Regex = #"(?m)^[L\.]+$"#
-    let rows = try rowRegex.matches(in: input).map { match in
-      try SeatingChart.Seat.matches(in: match.entireMatch)
+    let rows = rowRegex.matches(in: input).map { match in
+      SeatingChart.Seat.matches(in: String(match.text))
     }
 
     let initialChart = SeatingChart(rows: rows)

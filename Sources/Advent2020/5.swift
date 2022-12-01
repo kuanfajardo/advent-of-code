@@ -14,11 +14,11 @@ public struct Day5: AdventDay {
 
     static let regex: Regex = #"(?m)^(?<rowSpec>[FB]{7})(?<columnSpec>[LR]{3})$"#
 
-    init(match: Match) throws {
-      let binaryRowString = try match.captureGroup(named: "rowSpec")
+    init(match: Match) {
+      let binaryRowString = match["rowSpec"]!
         .replacingOccurrences(of: "F", with: "0")
         .replacingOccurrences(of: "B", with: "1")
-      let binaryColumnString = try match.captureGroup(named: "columnSpec")
+      let binaryColumnString = match["columnSpec"]!
         .replacingOccurrences(of: "L", with: "0")
         .replacingOccurrences(of: "R", with: "1")
 
@@ -28,7 +28,7 @@ public struct Day5: AdventDay {
   }
 
   public static func run(input: String) throws -> Any {
-    let seatIDs = try Seat.matches(in: input).map { $0.row * 8 + $0.column }
+    let seatIDs = Seat.matches(in: input).map { $0.row * 8 + $0.column }
     return (
       partOne: seatIDs.max()!,  // 874
       partTwo: missingSeatID(among: seatIDs)  // 594

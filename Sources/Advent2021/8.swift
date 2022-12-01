@@ -19,7 +19,7 @@ public struct Day8: AdventDay {
     let signals: [SegmentSet]
     let digits: [SegmentSet]
 
-    init(match: Match) throws {
+    init(match: Match) {
       /// - Returns: Segment set from a string representing a segment set, i.e. `"abdf"` -> `[.a, .b, .d, .f]`
       func makeSegmentSet(rawSegment: String) -> SegmentSet {
         rawSegment
@@ -27,18 +27,18 @@ public struct Day8: AdventDay {
           .reduce(into: []) { $0.insert($1) }
       }
 
-      self.signals = try match.captureGroup(named: "signals")
+      self.signals = match["signals"]!
         .components(separatedBy: .whitespaces)
         .map(makeSegmentSet(rawSegment:))
 
-      self.digits = try match.captureGroup(named: "digits")
+      self.digits = match["digits"]!
         .components(separatedBy: .whitespaces)
         .map(makeSegmentSet(rawSegment:))
     }
   }
 
   public static func run(input: String) throws -> Any {
-    let outputs = try Input.matches(in: input).map(calculateOutput(fromInput:))
+    let outputs = Input.matches(in: input).map(calculateOutput(fromInput:))
     return (
       partOne: outputs.flatMap(\.digits).filter { [1, 4, 7, 8].contains($0) }.count,  // 247
       partTwo: outputs.map(\.value).reduce(0, +)  // 933305

@@ -8,7 +8,7 @@ public struct Day1: AdventDay {
   public static let day = 1
 
   public static func run(input: String) throws -> Any {
-    let measurements = try Int.matches(in: input)
+    let measurements = Int.matches(in: input)
     return (
       partOne: measurements
         .adjacentPairs()

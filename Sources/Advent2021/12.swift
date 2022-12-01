@@ -34,9 +34,9 @@ public struct Day12: AdventDay {
 
     static let regex: Regex = #"(?<start>\w+)\-(?<end>\w+)"#
 
-    init(match: Match) throws {
-      self.startCave = Cave(rawValue: try match.captureGroup(named: "start"))
-      self.endCave = Cave(rawValue: try match.captureGroup(named: "end"))
+    init(match: Match) {
+      self.startCave = Cave(rawValue: match["start"]!)
+      self.endCave = Cave(rawValue: match["end"]!)
     }
   }
 
@@ -44,7 +44,7 @@ public struct Day12: AdventDay {
   typealias Path = [Cave]
 
   public static func run(input: String) throws -> Any {
-    let connections = try Connection.matches(in: input)
+    let connections = Connection.matches(in: input)
     let caveNetwork: CaveNetwork = connections.reduce(into: [:]) { caveNetwork, connection in
       // Graph is doubly-directed.
       caveNetwork[connection.startCave, default: []] += [connection.endCave]

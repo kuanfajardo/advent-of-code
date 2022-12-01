@@ -24,11 +24,11 @@ public struct Day5: AdventDay {
     var isHorizontal: Bool { y1 == y2 }
     var isVertical: Bool { x1 == x2 }
 
-    init(match: Match) throws {
-      self.x1 = try match.captureGroup(named: "x1", as: Int.self)
-      self.y1 = try match.captureGroup(named: "y1", as: Int.self)
-      self.x2 = try match.captureGroup(named: "x2", as: Int.self)
-      self.y2 = try match.captureGroup(named: "y2", as: Int.self)
+    init(match: Match) {
+      self.x1 = match["x1", as: Int.self]!
+      self.y1 = match["y1", as: Int.self]!
+      self.x2 = match["x2", as: Int.self]!
+      self.y2 = match["y2", as: Int.self]!
     }
   }
 
@@ -60,7 +60,7 @@ public struct Day5: AdventDay {
   }
 
   public static func run(input: String) throws -> Any {
-    let lines = try Line.matches(in: input)
+    let lines = Line.matches(in: input)
     return (
       partOne: numberOfPointsWithMoreThanTwoLines(lines: lines.filter { $0.isVertical || $0.isHorizontal }),  // 3990
       partTwo: numberOfPointsWithMoreThanTwoLines(lines: lines)  // 21305

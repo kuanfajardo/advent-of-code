@@ -18,8 +18,8 @@ public struct Day3: AdventDay {
     
     static let regex: Regex = #"(?m)^(?<spaces>[#\.]+)$"#
     
-    init(match: Match) throws {
-      self.spaces = try match.captureGroup(named: "spaces").map { Space(rawValue: $0)! }
+    init(match: Match) {
+      self.spaces = match["spaces"]!.map { Space(rawValue: $0)! }
     }
     
     subscript(column: Int) -> Space {
@@ -71,7 +71,7 @@ public struct Day3: AdventDay {
   // MARK: Logic
   
   public static func run(input: String) throws -> Any {
-    let rows = try Row.matches(in: input)
+    let rows = Row.matches(in: input)
     
     let partOneSlope = (columns: 3, rows: 1)
     let partTwoSlopes: [Slope] = [

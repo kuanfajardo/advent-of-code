@@ -8,7 +8,7 @@ public struct Day10: AdventDay {
   public static let day = 10
 
   public static func run(input: String) throws -> Any {
-    let joltages = try Int.matches(in: input)
+    let joltages = Int.matches(in: input)
     let effectiveJoltages = joltages + [0, joltages.max()! + 3]
 
     return (

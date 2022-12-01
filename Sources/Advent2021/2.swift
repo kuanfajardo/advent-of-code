@@ -12,9 +12,9 @@ public struct Day2: AdventDay {
 
     static let regex: Regex = #"(?m)^(?<direction>(up|down|forward))\s(?<amount>[0-9]+)"#
 
-    init(match: Match) throws {
-      let amount = try match.captureGroup(named: "amount", as: Int.self)
-      switch try match.captureGroup(named: "direction") {
+    init?(match: Match) {
+      let amount = match["amount", as: Int.self]!
+      switch match["direction"] {
       case "up":
         self = .up(amount)
       case "down":
@@ -22,7 +22,7 @@ public struct Day2: AdventDay {
       case "forward":
         self = .forward(amount)
       default:
-        throw AdventError.malformedInput
+        return nil
       }
     }
   }
@@ -65,7 +65,7 @@ public struct Day2: AdventDay {
   }
 
   public static func run(input: String) throws -> Any {
-    let movements = try Movement.matches(in: input)
+    let movements = Movement.matches(in: input)
 
     // Part One
     let finalBasicPosition = movements.reduce(Position.start) { $0.moving(by: $1) }

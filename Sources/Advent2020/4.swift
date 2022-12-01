@@ -18,7 +18,7 @@ public struct Day4: AdventDay {
   enum BasicField: String, PassportField {
     case byr, iyr, eyr, hgt, hcl, ecl, pid
     
-    var regex: Regex { Regex(pattern: "\(rawValue):") }
+    var regex: Regex { "\(rawValue):" }
     
     func validate(match: Match) -> Bool { true }
   }
@@ -33,7 +33,7 @@ public struct Day4: AdventDay {
     case ecl = #"ecl:(amb|blu|brn|gry|grn|hzl|oth)\b"#
     case pid = #"pid:[0-9]{9}\b"#
     
-    var regex: Regex { Regex(pattern: rawValue) }
+    var regex: Regex { rawValue }
     
     func validate(match: Match) -> Bool {
       do {
@@ -77,7 +77,7 @@ public struct Day4: AdventDay {
   
   static func numValidPassports<Fields: PassportField>(in batch: String, fields: Fields.Type) -> Int {
     let passportEntryRegex: Regex = #"(?ms)(?<entry>.+?)\n\n"#
-    let passportEntries = passportEntryRegex.matches(in: batch).map { $0["entry"]! }
+    let passportEntries = passportEntryRegex.matches(in: batch).map { try! $0.captureGroup(named: "entry") }
     
     return passportEntries.filter { entry in
       Fields.allCases.allSatisfy {

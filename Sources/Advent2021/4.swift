@@ -35,7 +35,7 @@ public struct Day4: AdventDay {
 
   public static func run(input: String) throws -> Any {
     guard let lineBreakIndex = input.firstIndex(of: "\n") else { throw AdventError.malformedInput }
-    let bingoNumbers = try Int.matches(in: String(input.prefix(upTo: lineBreakIndex)))
+    let bingoNumbers = Int.matches(in: String(input.prefix(upTo: lineBreakIndex)))
     let boards = input[lineBreakIndex...]
       .components(separatedBy: .whitespacesAndNewlines)
       .filter { !$0.isEmpty }

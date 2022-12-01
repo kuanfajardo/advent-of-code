@@ -34,7 +34,10 @@ let package = Package(
     ),
     .target(
       name: "AdventCommon",
-      dependencies: ["LASwift"]
+      dependencies: [
+        "LASwift",
+        "Regex",
+      ]
     ),
     .target(
       name: "Advent2020",

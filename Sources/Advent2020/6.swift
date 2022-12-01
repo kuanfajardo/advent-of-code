@@ -11,18 +11,18 @@ public struct Day6: AdventDay {
     
     let forms: [[Character]]
     
-    init(match: Match) throws {
-      let body = try match.captureGroup(named: "body")
+    init(match: Match) {
+      let body = match["body"]!
       
       let formRegex: Regex = #"(?m)^(?<form>[a-z]+)$"#
-      self.forms = try formRegex.matches(in: body)
-        .map { try $0.captureGroup(named: "form") }
+      self.forms = formRegex.matches(in: body)
+        .compactMap { $0["form"] }
         .map { Array($0) }
     }
   }
   
   public static func run(input: String) throws -> Any {
-    let groupFormResponses = try GroupFormResponse.matches(in: input)
+    let groupFormResponses = GroupFormResponse.matches(in: input)
     
     // Part One
     let allUniqueYesesCount = groupFormResponses

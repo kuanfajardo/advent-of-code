@@ -1,5 +1,6 @@
 import Foundation
 import LASwift
+import Regex
 
 // MARK: Advent Types
 
@@ -120,5 +121,31 @@ extension Matrix {
 
   public convenience init(_ data: [Int]) {
     self.init(data.map { Double($0) })
+  }
+}
+
+public enum MatchError: Error {
+  case missingCaptureGroup(String)
+  case badRawValue(String)
+}
+
+extension Match {
+  /// Retrieves the match for a named capture group.
+  ///
+  /// - Parameter name: The name of the capture group to return.
+  /// - Returns: The string matching the capture group named `name`.
+  /// - Throws: If the capture group doesn't exist.
+  public func captureGroup(named name: String) throws -> String {
+    guard let value = self[name] else {
+      throw MatchError.missingCaptureGroup(name)
+    }
+    return value
+  }
+
+  ///
+  public func captureGroup<T: ExpressibleByCaptureGroup>(named name: String, as: T.Type) throws -> T {
+    let rawValue = try self.captureGroup(named: name)
+    guard let value = T.init(captureGroup: rawValue) else { throw MatchError.badRawValue(rawValue) }
+    return value
   }
 }

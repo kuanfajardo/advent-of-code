@@ -14,22 +14,22 @@ public struct Day8: AdventDay {
     case jmp(Int)
     case nop(Int)
 
-    init(match: Match) throws {
-      let sign = try match.captureGroup(named: "sign")
+    init?(match: Match) {
+      let sign = match["sign"]!
       let multiplier = sign == "-" ? -1 : 1
-      let value = try match.captureGroup(named: "value", as: Int.self) * multiplier
+      let value = match["value", as: Int.self]! * multiplier
 
-      switch try match.captureGroup(named: "instruction") {
+      switch match["instruction"]! {
       case "acc": self = .acc(value)
       case "jmp": self = .jmp(value)
       case "nop": self = .nop(value)
-      default: throw AdventError.malformedInput
+      default: return nil
       }
     }
   }
 
   public static func run(input: String) throws -> Any {
-    let instructions = try Instruction.matches(in: input)
+    let instructions = Instruction.matches(in: input)
     return (
       partOne: executeProgram(instructions: instructions).accumulator,  // 1801
       partTwo: accumulatorValueAfterCorrectTermination(instructions: instructions)  // 2060

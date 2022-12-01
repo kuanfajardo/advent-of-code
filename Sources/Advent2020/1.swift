@@ -8,7 +8,7 @@ public struct Day1: AdventDay {
   public static let day = 1
 
   public static func run(input: String) throws -> Any {
-    let numbers = try Int.matches(in: input)
+    let numbers = Int.matches(in: input)
     return (
       partOne: try findProductOfNumbersThatAddTo2020(in: numbers, count: 2),  // 877971
       partTwo: try findProductOfNumbersThatAddTo2020(in: numbers, count: 3)  // 203481432
