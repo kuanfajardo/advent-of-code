@@ -1,10 +1,11 @@
 import AdventCommon
 import Advent2020
 import Advent2021
+import Advent2022
 import ArgumentParser
 import Foundation
 
-let adventDay = Advent2021.Day15.self
+let adventDay = Advent2022.Day1.self
 
 @main
 struct Runner: ParsableCommand {

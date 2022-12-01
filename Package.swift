@@ -1,18 +1,18 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
   name: "Advent",
-  platforms: [.macOS(.v11)],
+  platforms: [.macOS(.v12)],
   products: [
     // Products define the executables and libraries a package produces, and make them visible to other packages.
     .executable(name: "Advent", targets: ["AdventRunner"])
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
-    .package(url: "https://github.com/apple/swift-algorithms.git", .branch("main")),
+    .package(url: "https://github.com/apple/swift-algorithms.git", branch: "main"),
     .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "0.4.3")),
     .package(url: "https://github.com/apple/swift-numerics.git", .upToNextMajor(from: "1.0.0")),
     .package(url: "https://github.com/apple/swift-collections.git", .upToNextMajor(from: "0.0.3")),
@@ -28,7 +28,7 @@ let package = Package(
       dependencies: [
         "Advent2020",
         "Advent2021",
-        "Regex",
+        "Advent2022",
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]
     ),
@@ -55,6 +55,17 @@ let package = Package(
         "AdventCommon",
         "Regex",
         "LASwift",
+        .product(name: "Collections", package: "swift-collections"),
+        .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "Algorithms", package: "swift-algorithms"),
+      ]
+    ),
+    .target(
+      name: "Advent2022",
+      dependencies: [
+        "AdventCommon",
+        "LASwift",
+        "Regex",
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "Algorithms", package: "swift-algorithms"),
