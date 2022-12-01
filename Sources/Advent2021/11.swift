@@ -3,6 +3,7 @@ import Algorithms
 
 public struct Day11: AdventDay {
 
+  public static let year = 2021
   public static let day = 11
 
   struct OctopusGrid: CustomStringConvertible {
@@ -99,7 +100,7 @@ public struct Day11: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let rows = input.components(separatedBy: .newlines)
       .filter { !$0.isEmpty }
       .map { line in
@@ -108,7 +109,7 @@ public struct Day11: AdventDay {
 
     let grid = OctopusGrid(rows: rows)
     
-    return (
+    return AdventAnswer(
       partOne: totalFlashCountAfter100Steps(startingGrid: grid),  // 1620
       partTwo: firstStepAtWhichAllOctupusesFlash(startingGrid: grid)
     )

@@ -3,6 +3,7 @@ import Regex
 
 public struct Day12: AdventDay {
 
+  public static let year = 2021
   public static let day = 12
 
   // MARK: Graph Types
@@ -43,7 +44,7 @@ public struct Day12: AdventDay {
   typealias CaveNetwork = [Cave: [Cave]]  // "Graph" type
   typealias Path = [Cave]
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let connections = Connection.matches(in: input)
     let caveNetwork: CaveNetwork = connections.reduce(into: [:]) { caveNetwork, connection in
       // Graph is doubly-directed.
@@ -51,7 +52,7 @@ public struct Day12: AdventDay {
       caveNetwork[connection.endCave, default: []] += [connection.startCave]
     }
 
-    return (
+    return AdventAnswer(
       partOne: allPathsFromStartToEnd(in: caveNetwork, visitor: SmallCaveOnlyOnceVisitor.self).count,  // 5756
       partTwo: allPathsFromStartToEnd(in: caveNetwork, visitor: AtMostOneSmallCaveTwiceVisitor.self).count  // 144603
     )

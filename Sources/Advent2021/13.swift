@@ -4,6 +4,7 @@ import Algorithms
 
 public struct Day13: AdventDay {
 
+  public static let year = 2021
   public static let day = 13
 
   struct Fold: RegexRepresentable {
@@ -84,13 +85,13 @@ public struct Day13: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let dots = Dot.matches(in: input)
     let folds = Fold.matches(in: input)
 
     let startingPaper = Paper(dots: Set(dots))
 
-    return (
+    return AdventAnswer(
       partOne: startingPaper.folded(across: folds[0]).dots.count,
       partTwo: startingPaper.folded(across: folds).draw() // HLBUBGFR
     )

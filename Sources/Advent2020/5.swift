@@ -5,6 +5,7 @@ import Regex
 /// https://adventofcode.com/2020/day/5
 public struct Day5: AdventDay {
 
+  public static let year = 2020
   public static let day = 5
 
   struct Seat: RegexRepresentable {
@@ -27,9 +28,9 @@ public struct Day5: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let seatIDs = Seat.matches(in: input).map { $0.row * 8 + $0.column }
-    return (
+    return AdventAnswer(
       partOne: seatIDs.max()!,  // 874
       partTwo: missingSeatID(among: seatIDs)  // 594
     )

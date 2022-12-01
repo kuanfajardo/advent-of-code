@@ -3,6 +3,7 @@ import Regex
 
 public struct Day4: AdventDay {
 
+  public static let year = 2021
   public static let day = 4
 
   struct BingoBoard {
@@ -33,7 +34,7 @@ public struct Day4: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     guard let lineBreakIndex = input.firstIndex(of: "\n") else { throw AdventError.malformedInput }
     let bingoNumbers = Int.matches(in: String(input.prefix(upTo: lineBreakIndex)))
     let boards = input[lineBreakIndex...]
@@ -57,7 +58,7 @@ public struct Day4: AdventDay {
       lhs.numbersDrawn < rhs.numbersDrawn
     }!
 
-    return (
+    return AdventAnswer(
       partOne: minMax.min.score,  // 54275
       partTwo: minMax.max.score  // 13158
     )

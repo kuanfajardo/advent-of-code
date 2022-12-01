@@ -4,6 +4,7 @@ import Regex
 /// https://adventofcode.com/2020/day/2
 public struct Day2: AdventDay {
 
+  public static let year = 2020
   public static let day = 2
 
   struct Entry: RegexRepresentable {
@@ -24,16 +25,16 @@ public struct Day2: AdventDay {
 
   // MARK: Logic
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let entries = Entry.matches(in: input)
-    return (
+    return AdventAnswer(
       partOne: numValidPasswordsByCount(in: entries),  // 600
       partTwo: numValidPasswordsByPosition(in: entries)  // 245
     )
   }
 
   // Part One
-  static func numValidPasswordsByCount(in entries: [Entry]) -> Any {
+  static func numValidPasswordsByCount(in entries: [Entry]) -> Int {
     return entries
       .filter {
         let count = $0.letter.matches(in: $0.password).count
@@ -43,7 +44,7 @@ public struct Day2: AdventDay {
   }
 
   // Part Two
-  static func numValidPasswordsByPosition(in entries: [Entry]) -> Any {
+  static func numValidPasswordsByPosition(in entries: [Entry]) -> Int {
     return entries
       .filter {
         let char = Character($0.letter)

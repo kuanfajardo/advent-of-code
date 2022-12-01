@@ -4,6 +4,7 @@ import Regex
 /// https://adventofcode.com/2020/day/6
 public struct Day6: AdventDay {
   
+  public static let year = 2020
   public static let day = 6
   
   struct GroupFormResponse: RegexRepresentable {
@@ -21,7 +22,7 @@ public struct Day6: AdventDay {
     }
   }
   
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let groupFormResponses = GroupFormResponse.matches(in: input)
     
     // Part One
@@ -44,7 +45,7 @@ public struct Day6: AdventDay {
       .map(\.count)
       .reduce(0, +)
     
-    return (
+    return AdventAnswer(
       partOne: allUniqueYesesCount,  // 6585
       partTwo: allInclusiveYesesCount  // 3276
     )

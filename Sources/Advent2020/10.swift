@@ -5,13 +5,14 @@ import Collections
 /// https://adventofcode.com/2020/day/10
 public struct Day10: AdventDay {
 
+  public static let year = 2020
   public static let day = 10
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let joltages = Int.matches(in: input)
     let effectiveJoltages = joltages + [0, joltages.max()! + 3]
 
-    return (
+    return AdventAnswer(
       partOne: partOne(joltages: effectiveJoltages),  // 2664
       partTwo: partTwo(joltages: effectiveJoltages)  // 148098383347712
     )

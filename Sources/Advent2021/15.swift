@@ -5,6 +5,7 @@ import DequeModule
 
 public struct Day15: AdventDay {
 
+  public static let year = 2021
   public static let day = 15
 
   struct Vertex: Hashable {
@@ -12,7 +13,7 @@ public struct Day15: AdventDay {
     let y: Int
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let temp =
     """
     1163751742
@@ -89,7 +90,7 @@ public struct Day15: AdventDay {
 
     risk -= weights[start.y][start.x]
 
-    return (
+    return AdventAnswer(
       partOne: risk,
       partTwo: 0
     )

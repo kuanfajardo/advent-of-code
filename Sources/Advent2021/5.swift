@@ -3,6 +3,7 @@ import Regex
 
 public struct Day5: AdventDay {
 
+  public static let year = 2021
   public static let day = 5
 
   struct Line: RegexRepresentable {
@@ -59,9 +60,9 @@ public struct Day5: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let lines = Line.matches(in: input)
-    return (
+    return AdventAnswer(
       partOne: numberOfPointsWithMoreThanTwoLines(lines: lines.filter { $0.isVertical || $0.isHorizontal }),  // 3990
       partTwo: numberOfPointsWithMoreThanTwoLines(lines: lines)  // 21305
     )

@@ -3,6 +3,7 @@ import Regex
 
 public struct Day2: AdventDay {
 
+  public static let year = 2021
   public static let day = 2
 
   enum Movement: RegexRepresentable {
@@ -64,7 +65,7 @@ public struct Day2: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let movements = Movement.matches(in: input)
 
     // Part One
@@ -72,7 +73,7 @@ public struct Day2: AdventDay {
     // Part Two
     let finalAimedPosition = movements.reduce(AimedPosition.start) { $0.moving(by: $1) }
 
-    return (
+    return AdventAnswer(
       partOne: finalBasicPosition.horizontal * finalBasicPosition.depth,  // 1962940
       partTwo: finalAimedPosition.horizontal * finalAimedPosition.depth  // 1813664422
     )

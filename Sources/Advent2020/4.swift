@@ -10,6 +10,7 @@ protocol PassportField: CaseIterable {
 /// https://adventofcode.com/2020/day/4
 public struct Day4: AdventDay {
   
+  public static let year = 2020
   public static let day = 4
   
   // MARK: Models
@@ -68,8 +69,8 @@ public struct Day4: AdventDay {
     }
   }
   
-  public static func run(input: String) throws -> Any {
-    return (
+  public static func solve(input: String) throws -> AdventAnswer {
+    return AdventAnswer(
       partOne: numValidPassports(in: input, fields: BasicField.self),  // 182
       partTwo: numValidPassports(in: input, fields: StrictField.self)  // 109
     )

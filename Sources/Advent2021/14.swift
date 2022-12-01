@@ -4,6 +4,7 @@ import Collections
 
 public struct Day14: AdventDay {
 
+  public static let year = 2021
   public static let day = 14
 
   struct Pair: Hashable, CustomStringConvertible {
@@ -35,12 +36,12 @@ public struct Day14: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let firstNewlineIndex = input.firstIndex(of: "\n")!
     let template = Array(input.prefix(upTo: firstNewlineIndex))
     let rulebook = try Rulebook.match(in: input)
 
-    return (
+    return AdventAnswer(
       partOne: differenceBetweenMaxAndMinCounts(
         of: elementCounts(afterExpandingTemplate: template, nTimes: 10, using: rulebook)
       ),  // 2899

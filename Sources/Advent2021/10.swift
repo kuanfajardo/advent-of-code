@@ -4,6 +4,7 @@ import Algorithms
 
 public struct Day10: AdventDay {
 
+  public static let year = 2021
   public static let day = 10
 
   enum Chunk {
@@ -54,7 +55,7 @@ public struct Day10: AdventDay {
     case incomplete(completionSequence: [Character])
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let lines = input.components(separatedBy: .newlines).map { line in
       line.map { Character(rawValue: String($0))! }
     }
@@ -66,7 +67,7 @@ public struct Day10: AdventDay {
         else { return false }
       }
 
-    return (
+    return AdventAnswer(
       partOne: totalSyntaxErrorScore(corruptedLines: corrupted),  // 296535
       partTwo: medianAutocompleteScore(incompleteLines: incomplete)  // 4245130838
     )

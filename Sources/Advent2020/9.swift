@@ -5,15 +5,16 @@ import Regex
 /// https://adventofcode.com/2020/day/9
 public struct Day9: AdventDay {
 
+  public static let year = 2020
   public static let day = 9
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let numbers = Int.matches(in: input)
 
     let firstInvalidNumber = firstInvalidNumber(in: numbers)
     let contiguousSummands = try firstContiguousListOfNumbers(in: numbers, thatAddTo: firstInvalidNumber)
 
-    return (
+    return AdventAnswer(
       partOne: firstInvalidNumber,  // 3199139634
       partTwo: contiguousSummands.minAndMax().map { $0.min + $0.max }!  // 438559930
     )

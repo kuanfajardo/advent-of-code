@@ -5,27 +5,21 @@ import Advent2022
 import ArgumentParser
 import Foundation
 
+let inputDirectory = URL(fileURLWithPath: "/Users/juanfajardo/Desktop/Advent/Resources/Advent")
+
+// Update this to run a different advent day!
 let adventDay = Advent2022.Day1.self
 
 @main
 struct Runner: ParsableCommand {
 
-  enum Error: Swift.Error {
-    case inputFileNotFound(String)
-  }
-
-  @Argument(help: "The path to the input directory.", transform: URL.init(fileURLWithPath:))
-  var inputDirectory: URL?
-
   func run() throws {
-    let inputFilename = "input_\(adventDay.day).txt"
-    guard let inputFile = inputDirectory?.appendingPathComponent(inputFilename, isDirectory: false)
-    else {
-      throw Error.inputFileNotFound("\(String(describing: inputDirectory?.path))/\(inputFilename)")
-    }
+    let inputFile = inputDirectory
+      .appendingPathComponent("\(adventDay.year)", isDirectory: true)
+      .appendingPathComponent("input_\(adventDay.day).txt", isDirectory: false)
 
     let input = try String(contentsOf: inputFile)
-    let result = try adventDay.run(input: input)
+    let result = try adventDay.solve(input: input)
 
     print(result)
   }

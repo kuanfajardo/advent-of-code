@@ -5,6 +5,7 @@ import Regex
 /// https://adventofcode.com/2020/day/8
 public struct Day8: AdventDay {
 
+  public static let year = 2020
   public static let day = 8
 
   enum Instruction: RegexRepresentable {
@@ -28,9 +29,9 @@ public struct Day8: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let instructions = Instruction.matches(in: input)
-    return (
+    return AdventAnswer(
       partOne: executeProgram(instructions: instructions).accumulator,  // 1801
       partTwo: accumulatorValueAfterCorrectTermination(instructions: instructions)  // 2060
     )

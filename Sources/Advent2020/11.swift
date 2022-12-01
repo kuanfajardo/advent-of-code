@@ -5,6 +5,7 @@ import Regex
 /// https://adventofcode.com/2020/day/11
 public struct Day11: AdventDay {
 
+  public static let year = 2020
   public static let day = 11
 
   struct SeatingChart: Equatable, CustomStringConvertible {
@@ -56,7 +57,7 @@ public struct Day11: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let rowRegex: Regex = #"(?m)^[L\.]+$"#
     let rows = rowRegex.matches(in: input).map { match in
       SeatingChart.Seat.matches(in: String(match.text))
@@ -64,7 +65,7 @@ public struct Day11: AdventDay {
 
     let initialChart = SeatingChart(rows: rows)
 
-    return (
+    return AdventAnswer(
       partOne: numberOfStableOccupiedSeats(
         startingFrom: initialChart,
         neighboringSeatsGivenBy: directNeighborStates(of:in:),

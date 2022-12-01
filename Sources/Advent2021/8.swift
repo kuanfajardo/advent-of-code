@@ -4,6 +4,7 @@ import Darwin
 
 public struct Day8: AdventDay {
 
+  public static let year = 2021
   public static let day = 8
 
   enum Segment: String, CustomStringConvertible, CaseIterable {
@@ -37,9 +38,9 @@ public struct Day8: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let outputs = Input.matches(in: input).map(calculateOutput(fromInput:))
-    return (
+    return AdventAnswer(
       partOne: outputs.flatMap(\.digits).filter { [1, 4, 7, 8].contains($0) }.count,  // 247
       partTwo: outputs.map(\.value).reduce(0, +)  // 933305
     )

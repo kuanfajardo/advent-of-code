@@ -4,6 +4,7 @@ import Regex
 /// https://adventofcode.com/2020/day/3
 public struct Day3: AdventDay {
   
+  public static let year = 2020
   public static let day = 3
   
   // MARK: Models
@@ -70,7 +71,7 @@ public struct Day3: AdventDay {
   
   // MARK: Logic
   
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let rows = Row.matches(in: input)
     
     let partOneSlope = (columns: 3, rows: 1)
@@ -82,7 +83,7 @@ public struct Day3: AdventDay {
       (columns: 1, rows: 2),
     ]
     
-    return (
+    return AdventAnswer(
       partOne: numTreesHit(ridingDown: rows, using: partOneSlope),  // 284
       partTwo: partTwoSlopes
         .map { numTreesHit(ridingDown: rows, using: $0) }

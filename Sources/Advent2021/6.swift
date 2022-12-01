@@ -4,11 +4,12 @@ import Regex
 
 public struct Day6: AdventDay {
 
+  public static let year = 2021
   public static let day = 6
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let fishAges = Int.matches(in: input)
-    return (
+    return AdventAnswer(
       partOne: numberOfLanternfish(afterDays: 80, startingFishAges: fishAges), // 374927
       partTwo: numberOfLanternfish(afterDays: 256, startingFishAges: fishAges)  // 1687617803407
     )

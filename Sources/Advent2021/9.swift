@@ -4,6 +4,7 @@ import Algorithms
 
 public struct Day9: AdventDay {
 
+  public static let year = 2021
   public static let day = 9
 
   struct FloorMap {
@@ -49,7 +50,7 @@ public struct Day9: AdventDay {
     }
   }
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let rows = input.components(separatedBy: .newlines).filter { !$0.isEmpty }.map { rowString in
       rowString.map { Int($0)! }
     }
@@ -66,7 +67,7 @@ public struct Day9: AdventDay {
           }
       }
 
-    return (
+    return AdventAnswer(
       partOne: lowHeightCoordinates.map { floorMap[$0] + 1 }.reduce(0, +),  // 566
       partTwo: lowHeightCoordinates
         .map { sizeOfBasin(lowPoint: $0, in: floorMap) }

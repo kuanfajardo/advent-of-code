@@ -4,15 +4,16 @@ import Darwin
 
 public struct Day3: AdventDay {
 
+  public static let year = 2021
   public static let day = 3
 
-  public static func run(input: String) throws -> Any {
+  public static func solve(input: String) throws -> AdventAnswer {
     let reportNumbers = input.components(separatedBy: "\n").compactMap { Int($0, radix: 2) }
 
     let (gamma, epsilon) = calculateGammaAndEpsilon(from: reportNumbers)
     let (o2, co2) = calculateO2AndCO2Ratings(from: reportNumbers)
 
-    return (
+    return AdventAnswer(
       partOne: gamma * epsilon,  // 2003336
       partTwo: o2 * co2  // 1877139
     )
