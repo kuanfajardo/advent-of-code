@@ -168,3 +168,10 @@ extension Match {
     return value
   }
 }
+
+extension RawRepresentable where RawValue == String {
+  
+  init?(captureGroup: String) {
+    self.init(rawValue: captureGroup)
+  }
+}
