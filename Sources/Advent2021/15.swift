@@ -8,91 +8,51 @@ public struct Day15: AdventDay {
   public static let year = 2021
   public static let day = 15
 
-  struct Vertex: Hashable {
-    let x: Int
-    let y: Int
-  }
-
   public static func solve(input: String) throws -> AdventAnswer {
-    let temp =
-    """
-    1163751742
-    1381373672
-    2136511328
-    3694931569
-    7463417111
-    1319128137
-    1359912421
-    3125421639
-    1293138521
-    2311944581
-    """
-
-    let weights = input.components(separatedBy: .newlines).map {
+    // Part 1 Input
+    let risks = input.trimmingCharacters(in: .newlines).components(separatedBy: .newlines).map {
       $0.map { Int($0)! }
     }
 
-    let numRows = weights.count
-    let numColumns = weights.first!.count
-
-    let start = Vertex(x: 0, y: 0)
-    let end = Vertex(x: numColumns - 1, y: numRows - 1)
-
-    let vertices = product(0..<numColumns, 0..<numRows).map { Vertex(x: $0, y: $1) }
-
-    var unvisited = Set(vertices)
-    var distances: [Vertex: Int] = vertices.reduce(into: [:]) { $0[$1] = .max }
-    var previous: [Vertex: Vertex] = vertices.reduce(into: [:]) { $0[$1] = nil }
-
-
-    distances[start] = 0
-
-    func neighbors(of vertex: Vertex) -> [Vertex] {
-      let deltas: [(Int, Int)] = [
-        (-1, 0), (1, 0), (0, -1), (0, 1)
-      ]
-      return deltas.map { (dx, dy) in
-        Vertex(x: vertex.x + dx, y: vertex.y + dy)
-      }
+    // Part 2 Input
+    let size = risks.count
+    var part2Risks = [[Int]](repeating: [Int](repeating: 0, count: size * 5), count: size * 5)
+    product(0..<size * 5, 0..<size * 5).forEach { i, j in
+      let xOffset = i / size
+      let yOffset = j / size
+      let originalWeight = risks[i % size][j % size]
+      let newWeight = originalWeight + xOffset + yOffset
+      part2Risks[i][j] = ((newWeight - 1) % 9) + 1  // Wrap to number between 1-9
     }
-
-//    var min
-
-    while !unvisited.isEmpty {
-      let u = distances
-        .sorted { $0.value < $1.value }
-        .first { unvisited.contains($0.key) }!
-        .key
-
-      unvisited.remove(u)
-
-      if u == end {
-        break
-      }
-
-      unvisited.intersection(neighbors(of: u)).forEach { v in
-        let alt = distances[u]! + weights[v.y][v.x]
-        if alt < distances[v]! {
-          distances[v] = alt
-          previous[v] = u
+        
+    return AdventAnswer(
+      partOne: findSmallestRisk(risks: risks),  // 458
+      partTwo: findSmallestRisk(risks: part2Risks) // 2800
+    )
+  }
+  
+  static func findSmallestRisk(risks: [[Int]]) -> Weight {
+    let size = risks.count
+    let edges = product(0..<size, 0..<size)
+      .flatMap { (x, y) in
+        let vertex = Vertex2D(x: x, y: y)
+        return [
+          (-1, 0), (0, -1), (1, 0), (0, 1)
+        ].map { (dx, dy) in
+          Vertex2D(x: vertex.x + dx, y: vertex.y + dy)
+        }.filter {
+          (0..<size).contains($0.x) && (0..<size).contains($0.y)
+        }.map {
+          Graph.Edge(start: vertex, end: $0, weight: risks[$0.x][$0.y])
         }
       }
-    }
 
-    var risk = 0
-    var u: Vertex? = end
+    let graph = Graph(edges: edges)
 
-    while true {
-      guard let unwrapped = u else { break }
-      risk += weights[unwrapped.y][unwrapped.x]
-      u = previous[unwrapped]
-    }
-
-    risk -= weights[start.y][start.x]
-
-    return AdventAnswer(
-      partOne: risk,
-      partTwo: 0
+    return graph.shortestPathDijkstra(
+      from: Vertex2D(x: 0, y: 0),
+      to: Vertex2D(x: size - 1, y: size - 1)
     )
   }
 }
+
