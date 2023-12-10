@@ -2,13 +2,14 @@ import AdventCommon
 import Advent2020
 import Advent2021
 import Advent2022
+import Advent2023
 import ArgumentParser
 import Foundation
 
 let inputDirectory = URL(fileURLWithPath: "/Users/juanfajardo/Desktop/Advent/Resources/Advent")
 
 // Update this to run a different advent day!
-let adventDay = Advent2022.Day13.self
+let adventDay = Advent2023.Day1.self
 
 @main
 struct Runner: ParsableCommand {

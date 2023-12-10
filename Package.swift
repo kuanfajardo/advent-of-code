@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
   name: "Advent",
-  platforms: [.macOS(.v12)],
+  platforms: [.macOS(.v13)],
   products: [
     // Products define the executables and libraries a package produces, and make them visible to other packages.
     .executable(name: "Advent", targets: ["AdventRunner"])
@@ -29,6 +29,7 @@ let package = Package(
         "Advent2020",
         "Advent2021",
         "Advent2022",
+        "Advent2023",
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]
     ),
@@ -66,6 +67,16 @@ let package = Package(
         "AdventCommon",
         "LASwift",
         "Regex",
+        .product(name: "Collections", package: "swift-collections"),
+        .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "Algorithms", package: "swift-algorithms"),
+      ]
+    ),
+    .target(
+      name: "Advent2023",
+      dependencies: [
+        "AdventCommon",
+        "LASwift",
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "Algorithms", package: "swift-algorithms"),
