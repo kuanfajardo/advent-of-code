@@ -30,7 +30,7 @@ public protocol AdventDay {
 
 public enum AdventError: Error {
   case noSolutionFound
-  case malformedInput
+  case malformedInput(input: any StringProtocol = "")
 }
 
 // MARK: Extensions
@@ -173,5 +173,13 @@ extension RawRepresentable where RawValue == String {
   
   init?(captureGroup: String) {
     self.init(rawValue: captureGroup)
+  }
+}
+
+extension String: RegexRepresentable {
+  public static let regex: Regex = ".*"
+  
+  public init?(match: Match) {
+    self = String(match.text)
   }
 }
