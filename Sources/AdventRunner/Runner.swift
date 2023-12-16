@@ -9,7 +9,7 @@ import Foundation
 let inputDirectory = URL(fileURLWithPath: "/Users/juanfajardo/Desktop/Advent/Resources/Advent")
 
 // Update this to run a different advent day!
-let adventDay = Advent2023.Day6.self
+let adventDay = Advent2023.Day7.self
 
 @main
 struct Runner: ParsableCommand {
