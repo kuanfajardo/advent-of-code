@@ -114,8 +114,9 @@ public struct DistanceMap<Vertex: Hashable> {
 
 extension Graph {
   
-  public func shortestPathDijkstra(from source: Vertex, to destination: Vertex) -> Weight {
+  public func shortestPathDijkstra(from source: Vertex, to destination: Vertex) -> (cost: Weight, path: [Vertex])? {
     var distances = DistanceMap<Vertex>()
+    var previous = [Vertex: Vertex]()
     self.vertices.forEach {
       distances[$0] = .infinity
     }
@@ -131,11 +132,22 @@ extension Graph {
         let newDistance = distances[u] + edge.weight
         if newDistance < distances[neighbor] {
           distances[neighbor] = newDistance
+          previous[neighbor] = u
           queue.updateKey(of: neighbor, to: newDistance)
         }
       }
     }
     
-    return distances[destination]
+    var pathFromDestination = [destination]
+    var current = destination
+    while let p = previous[current] {
+      pathFromDestination.append(p)
+      current = p
+    }
+    
+    let path = Array(pathFromDestination.reversed())
+    
+    guard path.first == source else { return nil }
+    return (cost: distances[destination], path: path)
   }
 }
