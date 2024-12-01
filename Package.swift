@@ -30,6 +30,7 @@ let package = Package(
         "Advent2021",
         "Advent2022",
         "Advent2023",
+        "Advent2024",
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]
     ),
@@ -74,6 +75,17 @@ let package = Package(
     ),
     .target(
       name: "Advent2023",
+      dependencies: [
+        "AdventCommon",
+        "LASwift",
+        .product(name: "Collections", package: "swift-collections"),
+        .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "Algorithms", package: "swift-algorithms"),
+      ],
+      swiftSettings: [.enableUpcomingFeature("BareSlashRegexLiterals")]
+    ),
+    .target(
+      name: "Advent2024",
       dependencies: [
         "AdventCommon",
         "LASwift",
