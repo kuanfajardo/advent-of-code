@@ -12,7 +12,7 @@ public struct Coordinate: Hashable, CustomStringConvertible {
   public var description: String { "(\(self.x), \(self.y))" }
 }
 
-public struct Grid<Element: Hashable>: Sequence {
+public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible {
   
   public struct Entry: Hashable {
     public let coordinate: Coordinate
@@ -81,10 +81,19 @@ public struct Grid<Element: Hashable>: Sequence {
     }
   }
   
+  public var valueRows: [[Element]] { self._rows }
+  
+  public var valueColumns: [[Element]] { self._columns }
+  
   public func makeIterator() -> IndexingIterator<[Entry]> {
     product(0..<self.numColumns, 0..<self.numRows)
       .map { (x, y) in Entry(x: x, y: y, value: self._columns[x][y]) }
       .makeIterator()
+  }
+  
+  public var coordinates: [Coordinate] {
+    product(0..<self.numColumns, 0..<self.numRows)
+      .map(Coordinate.init(x:y:))
   }
   
   // MARK: NESW (Coordinates)
@@ -171,6 +180,15 @@ public struct Grid<Element: Hashable>: Sequence {
     
     let (minDelta, maxDelta) = [deltaX, deltaY].minAndMax()!
     return minDelta * 2 + (maxDelta - minDelta)
+  }
+  
+  // MARK: CustomDebugStringConvertible
+  
+  public var debugDescription: String {
+    self._rows.map { row in
+      row.map(String.init(describing:)).joined(separator: "")
+    }
+    .joined(separator: "\n")
   }
 }
 
