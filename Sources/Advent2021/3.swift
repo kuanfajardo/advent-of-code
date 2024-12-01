@@ -1,6 +1,7 @@
 import AdventCommon
 import Algorithms
 import Darwin
+import Regex
 
 public struct Day3: AdventDay {
 
@@ -75,5 +76,13 @@ public struct Day3: AdventDay {
     }
 
     return (o2, co2)
+  }
+}
+
+extension String: RegexRepresentable {
+  public static let regex: Regex = ".*"
+  
+  public init?(match: Match) {
+    self = String(match.text)
   }
 }

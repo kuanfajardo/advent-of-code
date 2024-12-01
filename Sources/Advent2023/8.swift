@@ -139,9 +139,6 @@ public struct Day8: AdventDay {
     }
     let loopLength = (numSteps - loopStart!) / instructions.count
     let visitedLoopStart = visited[loopStart!]!.enumerated()
-    let loopNStart = visitedLoopStart.first {
-      $0.element == current
-    }!.offset
     return (numSteps, loopStart!, loopLength, current, Array(visitedLoopStart))
   }
   
