@@ -31,6 +31,8 @@ public protocol AdventDay {
 public enum AdventError: Error {
   case noSolutionFound
   case malformedInput(input: any StringProtocol = "")
+  
+  public static var malformedInput: AdventError { .malformedInput() }
 }
 
 // MARK: Extensions

@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -80,7 +80,8 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "Algorithms", package: "swift-algorithms"),
-      ]
+      ],
+      swiftSettings: [.enableUpcomingFeature("BareSlashRegexLiterals")]
     ),
   ]
 )

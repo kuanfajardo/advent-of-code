@@ -1,4 +1,5 @@
 import Algorithms
+import OrderedCollections
 
 public struct Graph<Vertex: Hashable> {
   
@@ -16,7 +17,7 @@ public struct Graph<Vertex: Hashable> {
   
   public let edges: Set<Edge>
   
-  public let vertices: Set<Vertex>
+  public let vertices: OrderedSet<Vertex>
   
   private let edgeMap: [Vertex: [Vertex: Edge]]
   
@@ -24,8 +25,8 @@ public struct Graph<Vertex: Hashable> {
     self.edges = Set(edges)
     
     self.vertices = edges.reduce(into: []) { partialResult, edge in
-      partialResult.insert(edge.start)
-      partialResult.insert(edge.end)
+      partialResult.append(edge.start)
+      partialResult.append(edge.end)
     }
   
     self.edgeMap = edges.reduce(into: [:]) { partialResult, edge in
@@ -63,7 +64,6 @@ public struct Vertex2D: Hashable, CustomStringConvertible {
   }
 }
 
-
 // MARK: Searching Helpers
 
 public func + (lhs: Weight, rhs: Int) -> Weight {
@@ -87,6 +87,15 @@ public enum Weight: Comparable, ExpressibleByIntegerLiteral, CustomStringConvert
     case (.infinity, .concrete): return false
     case (.concrete(let _lhs), .concrete(let _rhs)): return _lhs < _rhs
     case (.infinity, .infinity): return false
+    }
+  }
+  
+  public static func + (lhs: Weight, rhs: Weight) -> Weight {
+    switch (lhs, rhs) {
+    case (.concrete, .infinity), (.infinity, .concrete), (.infinity, .infinity):
+      return .infinity
+    case (.concrete(let _lhs), .concrete(let _rhs)): 
+      return .concrete(_lhs + _rhs)
     }
   }
   
@@ -149,5 +158,47 @@ extension Graph {
     
     guard path.first == source else { return nil }
     return (cost: distances[destination], path: path)
+  }
+}
+
+public struct DistanceMatrix2D<Vertex: Hashable> {
+
+  private var distances = [Vertex: DistanceMap<Vertex>]()
+  
+  public init() { }
+  
+  public subscript(from source: Vertex, to destination: Vertex) -> Weight {
+    get { self.distances[source]?[destination] ?? .infinity }
+    set {
+      if self.distances[source] == nil {
+        self.distances[source] = DistanceMap()
+      }
+      self.distances[source]![destination] = newValue
+    }
+  }
+}
+
+
+extension Graph {
+
+  public func allPairsShortestPathsFloydWarshall() -> DistanceMatrix2D<Vertex> {
+    var distances = DistanceMatrix2D<Vertex>()
+    
+    for edge in self.edges {
+      distances[from: edge.start, to: edge.end] = .concrete(edge.weight)
+    }
+    
+    for intermediate in self.vertices {
+      for start in self.vertices {
+        for end in self.vertices {
+          distances[from: start, to: end] = min(
+            distances[from: start, to: end],
+            distances[from: start, to: intermediate] + distances[from: intermediate, to: end]
+          )
+        }
+      }
+    }
+
+    return distances
   }
 }
