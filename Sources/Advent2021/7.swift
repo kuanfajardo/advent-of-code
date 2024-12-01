@@ -6,7 +6,6 @@ public struct Day7: AdventDay {
   public static let day = 7
 
   public static func solve(input: String) throws -> AdventAnswer {
-    let numbers = Int.matches(in: input)
     let x = 5
     Thread.sleep(forTimeInterval: TimeInterval(x) / 2)
     Storage().hangTimeCount += 1

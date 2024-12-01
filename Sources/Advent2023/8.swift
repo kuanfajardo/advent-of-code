@@ -17,8 +17,7 @@ public struct Day8: AdventDay {
   
   public static var day: Int { 8 }
   
-  public static func solve(input: String) throws -> AdventAnswer {
-    let temp =
+  static let temp =
     """
     RL
 
@@ -30,8 +29,8 @@ public struct Day8: AdventDay {
     GGG = (GGG, GGG)
     ZZZ = (ZZZ, ZZZ)
     """
-    
-    let temp2 =
+  
+  static let temp2 =
     """
     LLR
 
@@ -39,7 +38,8 @@ public struct Day8: AdventDay {
     BBB = (AAA, ZZZ)
     ZZZ = (ZZZ, ZZZ)
     """
-    
+  
+  public static func solve(input: String) throws -> AdventAnswer {
     var lines = input.components(separatedBy: .newlines)
     let instructions = lines.removeFirst()
     let nodes = try lines.filter { !$0.isEmpty }.map(parseNode)
@@ -142,7 +142,6 @@ public struct Day8: AdventDay {
     let loopNStart = visitedLoopStart.first {
       $0.element == current
     }!.offset
-    let numStepLoopStart = loopNStart * instructions.count + loopStart!
     return (numSteps, loopStart!, loopLength, current, Array(visitedLoopStart))
   }
   

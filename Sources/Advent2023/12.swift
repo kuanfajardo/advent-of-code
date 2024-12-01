@@ -14,8 +14,7 @@ public struct Day12: AdventDay {
   
   public static var day: Int { 12 }
   
-  public static func solve(input: String) throws -> AdventAnswer {
-    let temp =
+  public static let temp =
     """
     ???.### 1,1,3
     .??..??...?##. 1,1,3
@@ -24,9 +23,8 @@ public struct Day12: AdventDay {
     ????.######..#####. 1,6,5
     ?###???????? 3,2,1
     """
-    
-    let line = "?###???????? 3,2,1"
-
+  
+  public static func solve(input: String) throws -> AdventAnswer {
     let records = try input.components(separatedBy: .newlines).map(self.makeConditionRecord(raw:))
     let counts = records.map { self.numberOfPossibleSolutions(entries: $0.entries, damagedCounts: $0.damagedCounts) }
 

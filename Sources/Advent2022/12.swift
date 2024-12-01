@@ -30,8 +30,8 @@ public struct Day12: AdventDay {
     
     func edgesForVertex(_ vertex: Vertex2DPayload<Space>) -> [Graph<Vertex2DPayload<Space>>.Edge] {
       return
-      // For each possible deltas between vertices...
-      [(-1, 0), (0, -1), (1, 0), (0, 1)]
+        // For each possible deltas between vertices...
+        [(-1, 0), (0, -1), (1, 0), (0, 1)]
         // Compute true coordinates of a possible neighbor of `vertex`...
         .map { (dx, dy) in
           (x: vertex.x + dx, y: vertex.y + dy)

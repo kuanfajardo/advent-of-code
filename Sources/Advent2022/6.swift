@@ -12,8 +12,8 @@ public struct Day6: AdventDay {
     let characters = Array(input)
 
     return AdventAnswer(
-      partOne: characters.windows(ofCount: 4).firstIndex { Set($0).count == 4 },  // 1896
-      partTwo: characters.windows(ofCount: 14).firstIndex { Set($0).count == 14 }  // 3452
+      partOne: characters.windows(ofCount: 4).firstIndex { Set($0).count == 4 }!,  // 1896
+      partTwo: characters.windows(ofCount: 14).firstIndex { Set($0).count == 14 }!  // 3452
     )
   }
 }
