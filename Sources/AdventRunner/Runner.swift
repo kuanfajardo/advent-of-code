@@ -11,7 +11,7 @@ let inputDirectory = URL(fileURLWithPath: "/Users/juanfajardo/Desktop/Advent/Res
 let inputDirectory_icloud = URL(fileURLWithPath: "//Users/juanfajardo/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Advent/Resources/Advent")
 
 // Update this to run a different advent day!
-let adventDay = Advent2024.Day1.self
+let adventDay = Advent2021.Day13.self
 
 @main
 struct Runner: ParsableCommand {
@@ -24,6 +24,19 @@ struct Runner: ParsableCommand {
     let input = try String(contentsOf: inputFile).trimmingCharacters(in: .whitespacesAndNewlines)
     let result = try adventDay.solve(input: input)
 
-    print(result)
+    print(
+      """
+      PART 1: \(self.textForResult(expected: adventDay.answer.partOne, actual: result.partOne))
+      PART 2: \(self.textForResult(expected: adventDay.answer.partTwo, actual: result.partTwo))
+      """
+    )
+  }
+  
+  private func textForResult(expected: AnyEquatable, actual: AnyEquatable) -> String {
+    if expected == actual {
+      return "✅ \(actual)"
+    } else {
+      return "❌ \(actual) (expected \(expected))"
+    }
   }
 }

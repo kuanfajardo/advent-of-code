@@ -93,9 +93,13 @@ public struct Day13: AdventDay {
 
     return AdventAnswer(
       partOne: startingPaper.folded(across: folds[0]).dots.count,
-      partTwo: startingPaper.folded(across: folds).draw() // HLBUBGFR
+      partTwo: SideEffectAnswer {
+        startingPaper.folded(across: folds).draw() // HLBUBGFR
+      }
     )
   }
+  
+  public static let answer = AdventAnswer(partOne: 810, partTwo: SideEffectAnswer("HLBUBGFR"))
 }
 
 extension RawRepresentable where RawValue == String {

@@ -39,6 +39,7 @@ let package = Package(
       dependencies: [
         "LASwift",
         "Regex",
+        .product(name: "Algorithms", package: "swift-algorithms"),
       ]
     ),
     .target(

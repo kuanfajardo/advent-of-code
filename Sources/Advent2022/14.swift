@@ -30,7 +30,7 @@ public struct Day14: AdventDay {
   }
 }
 
-struct Line {
+struct Line: Equatable {
   let coordinates: [Coordinate]
   
   init(coordinates: [Coordinate]) {

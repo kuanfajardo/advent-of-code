@@ -89,7 +89,12 @@ public struct Day8: AdventDay {
     
     return AdventAnswer(
       partOne: partOne,  // 21883
-      partTwo: nodes.filter { $0.id.last == "A" }.map(\.id).map { self.computeCycle(start: $0, lefts: leftNodesMap, rights: rightNodesMap, instructions: instructions)}  //
+      partTwo: NonCheckableAnswer {
+        nodes
+          .filter { $0.id.last == "A" }
+          .map(\.id)
+          .map { self.computeCycle(start: $0, lefts: leftNodesMap, rights: rightNodesMap, instructions: instructions) }  //
+      }
     )
   }
   

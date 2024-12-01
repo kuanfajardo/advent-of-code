@@ -114,9 +114,11 @@ public struct Day7: AdventDay {
     }
         
     let spaceNeededToClear = 30000000 - (70000000 - rootDirectory.size)
+    let part1Answer: Int = directories.map { $0.size }.filter { $0 <= 100000 }.reduce(0, +)  // 1443806
+    let part2Answer: Int = directories.map { $0.size }.filter { $0 >= spaceNeededToClear }.sorted(by: <).first!  // 942298
     return AdventAnswer(
-      partOne: directories.map { $0.size }.filter { $0 <= 100000 }.reduce(0, +),  // 1443806
-      partTwo: directories.map { $0.size }.filter { $0 >= spaceNeededToClear }.sorted(by: <).first!  // 942298
+      partOne: part1Answer,
+      partTwo: part2Answer
     )
   }
 }

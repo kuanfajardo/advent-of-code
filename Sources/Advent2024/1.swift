@@ -38,8 +38,10 @@ public struct Day1: AdventDay {
     let list2Bag = Bag(list2)
 
     return .init(
-      partOne: zip(list1.sorted(), list2.sorted()).map { abs($0.0 - $0.1) }.reduce(0, +),  // 2_430_334
-      partTwo: numbersInList1.map { $0 * list2Bag[$0] }.reduce(0, +)  // 28_786_472
+      partOne: zip(list1.sorted(), list2.sorted()).map { abs($0.0 - $0.1) }.reduce(0, +),
+      partTwo: numbersInList1.map { $0 * list2Bag[$0] }.reduce(0, +)
     )
   }
+  
+  public static let answer = AdventAnswer(partOne: 2_430_334, partTwo: 28_786_472)
 }
