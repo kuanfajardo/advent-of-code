@@ -14,6 +14,8 @@ public struct Day10: AdventDay {
   
   public static var day: Int { 10 }
   
+  public static let answer = AdventAnswer(partOne: 6690, partTwo: 525)
+  
   enum Pipe: Character, Hashable {
     case vertical = "|"
     case horizontal = "-"
@@ -49,8 +51,8 @@ public struct Day10: AdventDay {
     grid[start.coordinate] = startPipe
     
     return AdventAnswer(
-      partOne: loop.count / 2,  // 6690
-      partTwo: self.numberOfTiles(insideLoop: loop, withinGrid: grid)  // 525
+      partOne: loop.count / 2,
+      partTwo: self.numberOfTiles(insideLoop: loop, withinGrid: grid)
     )
   }
   

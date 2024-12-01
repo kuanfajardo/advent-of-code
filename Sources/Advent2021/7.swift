@@ -4,6 +4,7 @@ public struct Day7: AdventDay {
 
   public static let year = 2021
   public static let day = 7
+  public static let answer = AdventAnswer.unsolved
 
   public static func solve(input: String) throws -> AdventAnswer {
     let x = 5

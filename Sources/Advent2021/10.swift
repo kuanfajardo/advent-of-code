@@ -6,6 +6,7 @@ public struct Day10: AdventDay {
 
   public static let year = 2021
   public static let day = 10
+  public static let answer = AdventAnswer(partOne: 296535, partTwo: 4245130838)
 
   enum Chunk {
     case bracket
@@ -68,8 +69,8 @@ public struct Day10: AdventDay {
       }
 
     return AdventAnswer(
-      partOne: totalSyntaxErrorScore(corruptedLines: corrupted),  // 296535
-      partTwo: medianAutocompleteScore(incompleteLines: incomplete)  // 4245130838
+      partOne: totalSyntaxErrorScore(corruptedLines: corrupted),
+      partTwo: medianAutocompleteScore(incompleteLines: incomplete)
     )
   }
 

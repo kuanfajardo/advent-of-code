@@ -6,6 +6,7 @@ public struct Day9: AdventDay {
 
   public static let year = 2021
   public static let day = 9
+  public static let answer = AdventAnswer(partOne: 566, partTwo: 891684)
 
   struct FloorMap {
 
@@ -68,11 +69,11 @@ public struct Day9: AdventDay {
       }
 
     return AdventAnswer(
-      partOne: lowHeightCoordinates.map { floorMap[$0] + 1 }.reduce(0, +),  // 566
+      partOne: lowHeightCoordinates.map { floorMap[$0] + 1 }.reduce(0, +),
       partTwo: lowHeightCoordinates
         .map { sizeOfBasin(lowPoint: $0, in: floorMap) }
         .max(count: 3)
-        .reduce(1, *)  // 891684
+        .reduce(1, *)
     )
   }
 

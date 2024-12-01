@@ -7,11 +7,13 @@ public struct Day2: AdventDay {
 
   public static let year = 2022
   public static let day = 2
+  
+  public static let answer = AdventAnswer(partOne: 15632, partTwo: 14416)
 
   public static func solve(input: String) throws -> AdventAnswer {
     return AdventAnswer(
-      partOne: Round_Part1.matches(in: input).map(\.score).reduce(0, +),  // 15632
-      partTwo: Round_Part2.matches(in: input).map(\.score).reduce(0, +)  // 14416
+      partOne: Round_Part1.matches(in: input).map(\.score).reduce(0, +),
+      partTwo: Round_Part2.matches(in: input).map(\.score).reduce(0, +)
     )
   }
   

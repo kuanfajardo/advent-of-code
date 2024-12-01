@@ -7,6 +7,8 @@ public struct Day8: AdventDay {
   public static let year = 2022
   public static let day = 8
   
+  public static let answer = AdventAnswer(partOne: 1681, partTwo: 201684)
+  
   struct Coordinate: Hashable, CustomStringConvertible {
     let x: Int
     let y: Int
@@ -144,8 +146,8 @@ public struct Day8: AdventDay {
     }
     
     return AdventAnswer(
-      partOne: visibility.filter { $0.value }.count,  // 1681
-      partTwo: visibilities.max()!  // 201684
+      partOne: visibility.filter { $0.value }.count,
+      partTwo: visibilities.max()!
     )
   }
   

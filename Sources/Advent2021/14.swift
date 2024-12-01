@@ -6,6 +6,7 @@ public struct Day14: AdventDay {
 
   public static let year = 2021
   public static let day = 14
+  public static let answer = AdventAnswer(partOne: 2899, partTwo: 3528317079545)
 
   struct Pair: Hashable, CustomStringConvertible {
     let left: Character
@@ -44,10 +45,10 @@ public struct Day14: AdventDay {
     return AdventAnswer(
       partOne: differenceBetweenMaxAndMinCounts(
         of: elementCounts(afterExpandingTemplate: template, nTimes: 10, using: rulebook)
-      ),  // 2899
+      ),
       partTwo: differenceBetweenMaxAndMinCounts(
         of: elementCounts(afterExpandingTemplate: template, nTimes: 40, using: rulebook)
-      )  // 3528317079545
+      )
     )
   }
 

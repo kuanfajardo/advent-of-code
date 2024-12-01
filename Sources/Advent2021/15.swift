@@ -7,6 +7,7 @@ public struct Day15: AdventDay {
 
   public static let year = 2021
   public static let day = 15
+  public static let answer = AdventAnswer(partOne: Weight(458), partTwo: Weight(2800))
 
   public static func solve(input: String) throws -> AdventAnswer {
     // Part 1 Input
@@ -26,8 +27,8 @@ public struct Day15: AdventDay {
     }
         
     return AdventAnswer(
-      partOne: findSmallestRisk(risks: risks),  // 458
-      partTwo: findSmallestRisk(risks: part2Risks) // 2800
+      partOne: findSmallestRisk(risks: risks),
+      partTwo: findSmallestRisk(risks: part2Risks)
     )
   }
   

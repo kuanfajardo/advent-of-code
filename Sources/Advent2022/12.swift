@@ -8,6 +8,8 @@ public struct Day12: AdventDay {
   public static let year = 2022
   public static let day = 12
   
+  public static let answer = AdventAnswer(partOne: 361, partTwo: 354)
+  
   public static func solve(input: String) throws -> AdventAnswer {
     let rows = input.trimmingCharacters(in: .newlines).components(separatedBy: .newlines).map { row in
       row.map { Space($0) }
@@ -19,8 +21,8 @@ public struct Day12: AdventDay {
     let part2Starts = graph.vertices.filter { $0.payload.elevation == 0 }
     
     return AdventAnswer(
-      partOne: findShortestPathLength(in: graph, startingFrom: part1Start)!,  // 361
-      partTwo: part2Starts.compactMap { findShortestPathLength(in: graph, startingFrom: $0) }.min()!  // 354
+      partOne: findShortestPathLength(in: graph, startingFrom: part1Start)!,
+      partTwo: part2Starts.compactMap { findShortestPathLength(in: graph, startingFrom: $0) }.min()!
     )
   }
   

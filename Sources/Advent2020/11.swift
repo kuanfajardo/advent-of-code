@@ -7,6 +7,7 @@ public struct Day11: AdventDay {
 
   public static let year = 2020
   public static let day = 11
+  public static let answer = AdventAnswer(partOne: 2470, partTwo: 2259)
 
   struct SeatingChart: Equatable, CustomStringConvertible {
 
@@ -70,13 +71,13 @@ public struct Day11: AdventDay {
         startingFrom: initialChart,
         neighboringSeatsGivenBy: directNeighborStates(of:in:),
         maxNumberOfOccupiedNeighbors: 4
-      ),  // 2470
+      ),
 
       partTwo: numberOfStableOccupiedSeats(
         startingFrom: initialChart,
         neighboringSeatsGivenBy: statesOfNearestSeatsInLineOfSight(from:in:),
         maxNumberOfOccupiedNeighbors: 5
-      )  // 2259
+      )
     )
   }
 

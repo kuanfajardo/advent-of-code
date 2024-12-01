@@ -6,6 +6,8 @@ public struct Day1: AdventDay {
 
   public static let year = 2022
   public static let day = 1
+  
+  public static let answer = AdventAnswer(partOne: 69206, partTwo: 197400)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let rawInventory = input.components(separatedBy: .newlines).map(Int.init)
@@ -16,8 +18,8 @@ public struct Day1: AdventDay {
     }
     
     return AdventAnswer(
-      partOne: inventorySums.max()!,  // 69206
-      partTwo: inventorySums.max(count: 3).reduce(0, +)  // 197400
+      partOne: inventorySums.max()!,
+      partTwo: inventorySums.max(count: 3).reduce(0, +)
     )
   }
 }

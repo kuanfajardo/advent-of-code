@@ -5,6 +5,7 @@ public struct Day4: AdventDay {
 
   public static let year = 2021
   public static let day = 4
+  public static let answer = AdventAnswer(partOne: 54275, partTwo: 13158)
 
   struct BingoBoard {
     var lines: [Set<Int>]
@@ -59,8 +60,8 @@ public struct Day4: AdventDay {
     }!
 
     return AdventAnswer(
-      partOne: minMax.min.score,  // 54275
-      partTwo: minMax.max.score  // 13158
+      partOne: minMax.min.score,
+      partTwo: minMax.max.score
     )
   }
 }

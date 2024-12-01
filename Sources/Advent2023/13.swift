@@ -13,6 +13,8 @@ public struct Day13: AdventDay {
   
   public static let day = 13
   
+  public static let answer = AdventAnswer.unsolved
+  
   public static let temp =
     """
     #.##..##.

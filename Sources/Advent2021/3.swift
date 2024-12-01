@@ -7,6 +7,7 @@ public struct Day3: AdventDay {
 
   public static let year = 2021
   public static let day = 3
+  public static let answer = AdventAnswer(partOne: 2003336, partTwo: 1877139)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let reportNumbers = String.matches(in: input).compactMap { Int($0, radix: 2) }
@@ -15,8 +16,8 @@ public struct Day3: AdventDay {
     let (o2, co2) = calculateO2AndCO2Ratings(from: reportNumbers)
 
     return AdventAnswer(
-      partOne: gamma * epsilon,  // 2003336
-      partTwo: o2 * co2  // 1877139
+      partOne: gamma * epsilon,
+      partTwo: o2 * co2
     )
   }
 

@@ -7,6 +7,7 @@ public struct Day8: AdventDay {
 
   public static let year = 2020
   public static let day = 8
+  public static let answer = AdventAnswer(partOne: 1801, partTwo: 2060)
 
   enum Instruction: RegexRepresentable {
     static var regex: Regex = #"(?<instruction>(acc|jmp|nop)) (?<sign>\+|\-)(?<value>[0-9]+)"#
@@ -32,8 +33,8 @@ public struct Day8: AdventDay {
   public static func solve(input: String) throws -> AdventAnswer {
     let instructions = Instruction.matches(in: input)
     return AdventAnswer(
-      partOne: executeProgram(instructions: instructions).accumulator,  // 1801
-      partTwo: accumulatorValueAfterCorrectTermination(instructions: instructions)  // 2060
+      partOne: executeProgram(instructions: instructions).accumulator,
+      partTwo: accumulatorValueAfterCorrectTermination(instructions: instructions)
     )
   }
 

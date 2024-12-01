@@ -17,6 +17,8 @@ public struct Day4: AdventDay {
   
   public static let day = 4
   
+  public static let answer = AdventAnswer(partOne: 25_174, partTwo: 6_420_979)
+  
   struct Card: Hashable {
     let id: Int
     let winningNumbers: Set<Int>
@@ -63,8 +65,8 @@ public struct Day4: AdventDay {
     }
     
     return AdventAnswer(
-      partOne: cards.map(\.points).reduce(0, +),  // 25_174
-      partTwo: finalCounts.map(\.value).reduce(0, +)  // 6_420_979
+      partOne: cards.map(\.points).reduce(0, +),
+      partTwo: finalCounts.map(\.value).reduce(0, +)
     )
   }
   

@@ -7,12 +7,13 @@ public struct Day1: AdventDay {
 
   public static let year = 2020
   public static let day = 1
+  public static let answer = AdventAnswer(partOne: 877971, partTwo: 203481432)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let numbers = Int.matches(in: input)
     return AdventAnswer(
-      partOne: try findProductOfNumbersThatAddTo2020(in: numbers, count: 2),  // 877971
-      partTwo: try findProductOfNumbersThatAddTo2020(in: numbers, count: 3)  // 203481432
+      partOne: try findProductOfNumbersThatAddTo2020(in: numbers, count: 2),
+      partTwo: try findProductOfNumbersThatAddTo2020(in: numbers, count: 3)
     )
   }
 

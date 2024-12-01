@@ -7,6 +7,7 @@ public struct Day5: AdventDay {
 
   public static let year = 2020
   public static let day = 5
+  public static let answer = AdventAnswer(partOne: 874, partTwo: 594)
 
   struct Seat: RegexRepresentable {
 
@@ -31,8 +32,8 @@ public struct Day5: AdventDay {
   public static func solve(input: String) throws -> AdventAnswer {
     let seatIDs = Seat.matches(in: input).map { $0.row * 8 + $0.column }
     return AdventAnswer(
-      partOne: seatIDs.max()!,  // 874
-      partTwo: missingSeatID(among: seatIDs)  // 594
+      partOne: seatIDs.max()!,
+      partTwo: missingSeatID(among: seatIDs)
     )
   }
 

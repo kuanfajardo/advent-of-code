@@ -8,6 +8,8 @@ public struct Day7: AdventDay {
   public static let year = 2022
   public static let day = 7
   
+  public static let answer = AdventAnswer(partOne: 1443806, partTwo: 942298)
+  
   /// Representation of a line of input.
   enum InputLine {
     case ls
@@ -114,8 +116,8 @@ public struct Day7: AdventDay {
     }
         
     let spaceNeededToClear = 30000000 - (70000000 - rootDirectory.size)
-    let part1Answer: Int = directories.map { $0.size }.filter { $0 <= 100000 }.reduce(0, +)  // 1443806
-    let part2Answer: Int = directories.map { $0.size }.filter { $0 >= spaceNeededToClear }.sorted(by: <).first!  // 942298
+    let part1Answer: Int = directories.map { $0.size }.filter { $0 <= 100000 }.reduce(0, +)
+    let part2Answer: Int = directories.map { $0.size }.filter { $0 >= spaceNeededToClear }.sorted(by: <).first!
     return AdventAnswer(
       partOne: part1Answer,
       partTwo: part2Answer

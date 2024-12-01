@@ -6,6 +6,7 @@ public struct Day2: AdventDay {
 
   public static let year = 2020
   public static let day = 2
+  public static let answer = AdventAnswer(partOne: 600, partTwo: 245)
 
   struct Entry: RegexRepresentable {
     let min: Int
@@ -28,8 +29,8 @@ public struct Day2: AdventDay {
   public static func solve(input: String) throws -> AdventAnswer {
     let entries = Entry.matches(in: input)
     return AdventAnswer(
-      partOne: numValidPasswordsByCount(in: entries),  // 600
-      partTwo: numValidPasswordsByPosition(in: entries)  // 245
+      partOne: numValidPasswordsByCount(in: entries),
+      partTwo: numValidPasswordsByPosition(in: entries)
     )
   }
 

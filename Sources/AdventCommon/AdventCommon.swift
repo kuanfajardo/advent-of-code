@@ -4,7 +4,7 @@ import Regex
 
 // MARK: Advent Types
 
-public struct AdventAnswer: CustomStringConvertible {
+public struct AdventAnswer: CustomStringConvertible, Equatable {
   
   // MARK: Properties
 
@@ -48,10 +48,6 @@ public protocol AdventDay {
   static var answer: AdventAnswer { get }
 }
 
-extension AdventDay {
-  public static var answer: AdventAnswer { .unsolved }
-}
-
 public enum AdventError: Error {
   case noSolutionFound
   case malformedInput(input: any StringProtocol = "")
@@ -66,7 +62,9 @@ public struct SideEffectAnswer: Equatable {
   
   /// Use this initializer when returning an `AdventAnswer` in `solve`,
   /// with the side effect in the block parameter.
-  public init(_ sideEffect: () -> Void) {}
+  public init(_ sideEffect: () -> Void) {
+    sideEffect()
+  }
   
   /// Use this initializer in the `AdventDay.answer` property, to
   /// document the expected answer regardless of the side effect.
@@ -76,4 +74,21 @@ public struct SideEffectAnswer: Equatable {
 public struct NonCheckableAnswer: Equatable {
   
   public init(_ answer: Any) {}
+}
+
+// MARK: Parsing
+
+let inputDirectory = URL(fileURLWithPath: "/Users/juanfajardo/Desktop/Advent/Resources/Advent")
+let inputDirectory_icloud = URL(fileURLWithPath: "//Users/juanfajardo/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Advent/Resources/Advent")
+
+extension AdventDay {
+
+  public static func run() throws -> AdventAnswer {
+    let inputFile = inputDirectory_icloud
+      .appendingPathComponent("\(self.year)", isDirectory: true)
+      .appendingPathComponent("input_\(self.day).txt", isDirectory: false)
+
+    let input = try String(contentsOf: inputFile).trimmingCharacters(in: .whitespacesAndNewlines)
+    return try self.solve(input: input)
+  }
 }

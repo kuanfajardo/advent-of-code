@@ -13,6 +13,8 @@ public struct Day6: AdventDay {
   
   public static let day = 6
   
+  public static let answer = AdventAnswer(partOne: 6_209_190, partTwo: 28_545_089)
+  
   struct Race {
     let time: Int
     let distance: Int
@@ -33,8 +35,8 @@ public struct Day6: AdventDay {
     let part2Race = Race(time: 40_929_790, distance: 215_106_415_051_100)
     
     return AdventAnswer(
-      partOne: part1Races.map(numPossibilitiesQuadratic(toBeat:)).reduce(1, *),  // 6_209_190
-      partTwo: self.numPossibilitiesQuadratic(toBeat: part2Race)  // 28_545_089
+      partOne: part1Races.map(numPossibilitiesQuadratic(toBeat:)).reduce(1, *),
+      partTwo: self.numPossibilitiesQuadratic(toBeat: part2Race)
     )
   }
   

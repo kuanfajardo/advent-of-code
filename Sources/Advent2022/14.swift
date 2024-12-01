@@ -8,6 +8,8 @@ public struct Day14: AdventDay {
 
   public static let year = 2022
   public static let day = 14
+  
+  public static let answer = AdventAnswer.unsolved
 
   public static func solve(input: String) throws -> AdventAnswer {
     let coordinateRegex: Regex = #"(\d+,\d+)"#

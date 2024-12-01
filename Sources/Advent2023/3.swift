@@ -13,6 +13,8 @@ public struct Day3: AdventDay {
   
   public static let day = 3
   
+  public static let answer = AdventAnswer(partOne: 556_057, partTwo: 82_824_352)
+  
   typealias Number = Reference<Int>
   typealias Symbol = Reference<Character>
   
@@ -85,11 +87,11 @@ public struct Day3: AdventDay {
     return AdventAnswer(
       partOne: partNumbers
         .map(\.value)
-        .reduce(0, +),  // 556_057
+        .reduce(0, +),
       partTwo: gears
         .map { Array($0.value) }
         .map { $0[0].value * $0[1].value }
-        .reduce(0, +)  // 82_824_352
+        .reduce(0, +)
     )
   }
 }

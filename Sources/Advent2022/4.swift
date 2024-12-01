@@ -8,6 +8,8 @@ public struct Day4: AdventDay {
   public static let year = 2022
   public static let day = 4
   
+  public static let answer = AdventAnswer(partOne: 431, partTwo: 823)
+  
   struct Assignment: RegexRepresentable {
     static let regex: Regex = #"(?<group1start>\d+)-(?<group1end>\d+),(?<group2start>\d+)-(?<group2end>\d+)"#
     
@@ -24,8 +26,8 @@ public struct Day4: AdventDay {
     let assignments = Assignment.matches(in: input)
     
     return AdventAnswer(
-      partOne: assignments.filter { $0.group1.completelyOverlaps($0.group2) }.count,  // 431
-      partTwo: assignments.filter { $0.group1.overlaps($0.group2) }.count  // 823
+      partOne: assignments.filter { $0.group1.completelyOverlaps($0.group2) }.count,
+      partTwo: assignments.filter { $0.group1.overlaps($0.group2) }.count
     )
   }
 }

@@ -8,6 +8,7 @@ public struct Day16: AdventDay {
 
   public static let year = 2021
   public static let day = 16
+  public static let answer = AdventAnswer(partOne: 929, partTwo: 911945136934)
 
   public static func solve(input: String) throws -> AdventAnswer {
     var bits = Array(input.compactMap { Int(String($0), radix: 16) }.map { $0.bitArray(minLength: 4) }.reduce([], +).reversed())
@@ -44,8 +45,8 @@ public struct Day16: AdventDay {
     }
         
     return AdventAnswer(
-      partOne: versionSum(of: packet),  // 929
-      partTwo: value(of: packet)  // 911945136934
+      partOne: versionSum(of: packet),
+      partTwo: value(of: packet)
     )
   }
 }

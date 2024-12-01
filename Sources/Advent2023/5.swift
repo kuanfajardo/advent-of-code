@@ -16,6 +16,8 @@ public struct Day5: AdventDay {
   
   public static let day = 5
   
+  public static let answer = AdventAnswer(partOne: 442_133_701, partTwo: 3)
+  
   struct Map {
     // Represents an entry in a map.
     struct Entry {
@@ -88,9 +90,7 @@ public struct Day5: AdventDay {
       .trimmingCharacters(in: .whitespacesAndNewlines)
       .split(separator: " ")
       .map { Int($0)! }
-    
-    print(seeds)
-    
+        
     let seedToSoilMap = try self.makeMap(rawMapString: match[seedToSoilRef])
     let soilToFertilizerMap = try self.makeMap(rawMapString: match[soilToFertilizerRef])
     let fertilizerToWaterMap = try self.makeMap(rawMapString: match[fertilizerToWaterRef])
@@ -143,6 +143,4 @@ public struct Day5: AdventDay {
       }
     return Map(entries: entries)
   }
-  
-//  private func make
 }

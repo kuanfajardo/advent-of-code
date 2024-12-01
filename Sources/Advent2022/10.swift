@@ -7,6 +7,8 @@ public struct Day10: AdventDay {
 
   public static let year = 2022
   public static let day = 10
+  
+  public static let answer = AdventAnswer(partOne: 14520, partTwo: SideEffectAnswer("PBGZEJB"))
 
   public static func solve(input: String) throws -> AdventAnswer {
     var instructions = try input.components(separatedBy: .newlines).filter { !$0.isEmpty }.map(Instruction.init(input:))
@@ -72,8 +74,10 @@ public struct Day10: AdventDay {
     }
 
     return AdventAnswer(
-      partOne: [20, 60, 100, 140, 180, 220].map(cycleStrength(at:)).reduce(0, +),  // 14520
-      partTwo: "\n" + pixels.chunks(ofCount: 40).map(String.init(_:)).joined(separator: "\n")  // PBGZEJB
+      partOne: [20, 60, 100, 140, 180, 220].map(cycleStrength(at:)).reduce(0, +),
+      partTwo: SideEffectAnswer {
+        print("\n" + pixels.chunks(ofCount: 40).map(String.init(_:)).joined(separator: "\n"))
+      }
     )
   }
   

@@ -7,6 +7,7 @@ public struct Day1: AdventDay {
 
   public static let year = 2021
   public static let day = 1
+  public static let answer = AdventAnswer(partOne: 1655, partTwo: 1683)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let measurements = Int.matches(in: input)
@@ -14,14 +15,14 @@ public struct Day1: AdventDay {
       partOne: measurements
         .adjacentPairs()
         .filter { $0.1 > $0.0 }
-        .count,  // 1655
+        .count,
 
       partTwo: measurements
         .windows(ofCount: 3)
         .map { $0.reduce(0, +) }
         .adjacentPairs()
         .filter { $0.1 > $0.0 }
-        .count  // 1683
+        .count
     )
   }
 }

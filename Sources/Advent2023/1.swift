@@ -16,14 +16,16 @@ public struct Day1: AdventDay {
   
   public static let year = 2023
   
+  public static let answer = AdventAnswer(partOne: 54159, partTwo: 53866)
+  
   public static func solve(input: String) throws -> AdventCommon.AdventAnswer {
     let lines = input.components(separatedBy: .newlines).filter { !$0.isEmpty }
     return .init(
-      partOne: try self.partOne(lines: lines),  // 54159
-      partTwo: try self.partTwo(lines: lines)  // 53866
+      partOne: try self.partOne(lines: lines),
+      partTwo: try self.partTwo(lines: lines)
     )
   }
-  
+    
   public static func partOne(lines: [String]) throws -> Int {
     let regex: _StringProcessing.Regex = try Regex(#"\d"#, as: (Substring.self))
     return try lines.map {

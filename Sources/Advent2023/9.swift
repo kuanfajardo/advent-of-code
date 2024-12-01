@@ -13,6 +13,8 @@ public struct Day9: AdventDay {
   
   public static var day: Int { 9 }
   
+  public static let answer = AdventAnswer(partOne: 1_877_825_184, partTwo: 1_108)
+  
   public static func solve(input: String) throws -> AdventAnswer {
     let sequences = input.components(separatedBy: .newlines).map {
       $0.components(separatedBy: .whitespaces).map { Int($0)! }
@@ -20,8 +22,8 @@ public struct Day9: AdventDay {
 
     let previousAndNext = sequences.map { self.extrapolate(sequence: $0) }
     return AdventAnswer(
-      partOne: previousAndNext.map(\.next).reduce(0, +),  // 1_877_825_184
-      partTwo: previousAndNext.map(\.previous).reduce(0, +)  // 1_108
+      partOne: previousAndNext.map(\.next).reduce(0, +),
+      partTwo: previousAndNext.map(\.previous).reduce(0, +)
     )
   }
   

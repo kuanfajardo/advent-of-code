@@ -9,6 +9,8 @@ public struct Day13: AdventDay {
 
   public static let year = 2022
   public static let day = 13
+  
+  public static let answer = AdventAnswer(partOne: 5684, partTwo: 22932)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let payloads = input
@@ -17,8 +19,8 @@ public struct Day13: AdventDay {
       .map { Scanner(string: $0).scanPayload()! }
 
     return AdventAnswer(
-      partOne: indicesOfSortedPackets(payloads: payloads),  // 5684
-      partTwo: decoderKey(payloads: payloads)  // 22932
+      partOne: indicesOfSortedPackets(payloads: payloads),
+      partTwo: decoderKey(payloads: payloads)
     )
   }
   

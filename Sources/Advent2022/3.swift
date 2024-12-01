@@ -8,6 +8,8 @@ public struct Day3: AdventDay {
 
   public static let year = 2022
   public static let day = 3
+  
+  public static let answer = AdventAnswer(partOne: 8109, partTwo: 2738)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let rucksacks = input.components(separatedBy: .newlines).filter { !$0.isEmpty }
@@ -33,8 +35,8 @@ public struct Day3: AdventDay {
       .reduce(0, +)
     
     return AdventAnswer(
-      partOne: part1,  // 8109
-      partTwo: part2  // 2738
+      partOne: part1,
+      partTwo: part2
     )
   }
 }

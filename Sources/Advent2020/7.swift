@@ -7,6 +7,7 @@ public struct Day7: AdventDay {
   
   public static let year = 2020
   public static let day = 7
+  public static let answer = AdventAnswer(partOne: 139, partTwo: 58175)
   
   struct BagRule: RegexRepresentable {
     struct ContainmentRule: RegexRepresentable {
@@ -41,8 +42,8 @@ public struct Day7: AdventDay {
   public static func solve(input: String) throws -> AdventAnswer {
     let rules = BagRule.matches(in: input)
     return AdventAnswer(
-      partOne: numberOfBagColorsThatCanContainAShinyGoldBag(rules: rules),  // 139
-      partTwo: numberOfBagsRequiredInsideShinyGoldBag(rules: rules)  // 58175
+      partOne: numberOfBagColorsThatCanContainAShinyGoldBag(rules: rules),
+      partTwo: numberOfBagsRequiredInsideShinyGoldBag(rules: rules)
     )
   }
   

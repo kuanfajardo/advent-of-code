@@ -7,13 +7,15 @@ public struct Day9: AdventDay {
 
   public static let year = 2022
   public static let day = 9
+  
+  public static let answer = AdventAnswer(partOne: 6339, partTwo: 2541)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let moves = input.components(separatedBy: .newlines).compactMap { Instruction.firstMatch(in: $0) }
 
     return AdventAnswer(
-      partOne: self.numberOfPositionsTailVisits(inRopeOfLength: 2, headMoves: moves),  // 6339
-      partTwo: self.numberOfPositionsTailVisits(inRopeOfLength: 10, headMoves: moves)  // 2541
+      partOne: self.numberOfPositionsTailVisits(inRopeOfLength: 2, headMoves: moves),
+      partTwo: self.numberOfPositionsTailVisits(inRopeOfLength: 10, headMoves: moves)
     )
   }
   

@@ -5,6 +5,7 @@ public struct Day2: AdventDay {
 
   public static let year = 2021
   public static let day = 2
+  public static let answer = AdventAnswer(partOne: 1962940, partTwo: 1813664422)
 
   enum Movement: RegexRepresentable {
     case forward(Int)
@@ -74,8 +75,8 @@ public struct Day2: AdventDay {
     let finalAimedPosition = movements.reduce(AimedPosition.start) { $0.moving(by: $1) }
 
     return AdventAnswer(
-      partOne: finalBasicPosition.horizontal * finalBasicPosition.depth,  // 1962940
-      partTwo: finalAimedPosition.horizontal * finalAimedPosition.depth  // 1813664422
+      partOne: finalBasicPosition.horizontal * finalBasicPosition.depth,
+      partTwo: finalAimedPosition.horizontal * finalAimedPosition.depth
     )
   }
 }

@@ -5,6 +5,7 @@ public struct Day11: AdventDay {
 
   public static let year = 2021
   public static let day = 11
+  public static let answer = AdventAnswer(partOne: 1620, partTwo: 371)
 
   struct OctopusGrid: CustomStringConvertible {
 
@@ -110,7 +111,7 @@ public struct Day11: AdventDay {
     let grid = OctopusGrid(rows: rows)
     
     return AdventAnswer(
-      partOne: totalFlashCountAfter100Steps(startingGrid: grid),  // 1620
+      partOne: totalFlashCountAfter100Steps(startingGrid: grid),
       partTwo: firstStepAtWhichAllOctupusesFlash(startingGrid: grid)
     )
   }

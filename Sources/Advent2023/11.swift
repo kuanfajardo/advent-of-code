@@ -14,6 +14,8 @@ public struct Day11: AdventDay {
   
   public static var day: Int { 11 }
   
+  public static let answer = AdventAnswer(partOne: 9_648_398, partTwo: 618_800_410_814)
+  
   enum Space: Character, Equatable, Hashable {
     case galaxy = "#"
     case empty = "."
@@ -55,8 +57,8 @@ public struct Day11: AdventDay {
     }
     
     return AdventAnswer(
-      partOne: sumOfShortestDistances(expansionRate: 2),  // 9_648_398
-      partTwo: sumOfShortestDistances(expansionRate: 1_000_000)  // 618_800_410_814
+      partOne: sumOfShortestDistances(expansionRate: 2),
+      partTwo: sumOfShortestDistances(expansionRate: 1_000_000)
     )
   }
 

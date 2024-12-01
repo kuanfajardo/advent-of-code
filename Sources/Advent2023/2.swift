@@ -16,6 +16,8 @@ public struct Day2: AdventDay {
   
   public static let day = 2
   
+  public static let answer = AdventAnswer(partOne: 2632, partTwo: 69629)
+  
   struct Game {
     struct Hand {
       let red: Int
@@ -79,8 +81,8 @@ public struct Day2: AdventDay {
     }
         
     return AdventAnswer(
-      partOne: games.filter { $0.isPossibleWithCounts(red: 12, green: 13, blue: 14) }.map(\.id).reduce(0, +),  // 2632
-      partTwo: games.map(\.minimumHand.power).reduce(0, +)  // 69629
+      partOne: games.filter { $0.isPossibleWithCounts(red: 12, green: 13, blue: 14) }.map(\.id).reduce(0, +),
+      partTwo: games.map(\.minimumHand.power).reduce(0, +)
     )
   }
   

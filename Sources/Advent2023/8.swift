@@ -17,6 +17,8 @@ public struct Day8: AdventDay {
   
   public static var day: Int { 8 }
   
+  public static let answer = AdventAnswer.unsolved
+  
   static let temp =
     """
     RL

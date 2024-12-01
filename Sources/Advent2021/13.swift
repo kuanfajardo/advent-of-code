@@ -6,6 +6,7 @@ public struct Day13: AdventDay {
 
   public static let year = 2021
   public static let day = 13
+  public static let answer = AdventAnswer(partOne: 810, partTwo: SideEffectAnswer("HLBUBGFR"))
 
   struct Fold: RegexRepresentable {
     enum Axis: String, ExpressibleByCaptureGroup {
@@ -98,8 +99,6 @@ public struct Day13: AdventDay {
       }
     )
   }
-  
-  public static let answer = AdventAnswer(partOne: 810, partTwo: SideEffectAnswer("HLBUBGFR"))
 }
 
 extension RawRepresentable where RawValue == String {

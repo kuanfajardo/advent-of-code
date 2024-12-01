@@ -5,6 +5,7 @@ public struct Day5: AdventDay {
 
   public static let year = 2021
   public static let day = 5
+  public static let answer = AdventAnswer(partOne: 3990, partTwo: 21305)
 
   struct Line: RegexRepresentable {
     static let regex: Regex = #"(?<x1>[0-9]+),(?<y1>[0-9]+) -> (?<x2>[0-9]+),(?<y2>[0-9]+)"#
@@ -63,8 +64,8 @@ public struct Day5: AdventDay {
   public static func solve(input: String) throws -> AdventAnswer {
     let lines = Line.matches(in: input)
     return AdventAnswer(
-      partOne: numberOfPointsWithMoreThanTwoLines(lines: lines.filter { $0.isVertical || $0.isHorizontal }),  // 3990
-      partTwo: numberOfPointsWithMoreThanTwoLines(lines: lines)  // 21305
+      partOne: numberOfPointsWithMoreThanTwoLines(lines: lines.filter { $0.isVertical || $0.isHorizontal }),
+      partTwo: numberOfPointsWithMoreThanTwoLines(lines: lines)
     )
   }
 

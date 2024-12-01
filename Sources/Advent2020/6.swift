@@ -6,6 +6,7 @@ public struct Day6: AdventDay {
   
   public static let year = 2020
   public static let day = 6
+  public static let answer = AdventAnswer(partOne: 6585, partTwo: 3276)
   
   struct GroupFormResponse: RegexRepresentable {
     static let regex: Regex = #"(?<body>[a-z\n]*?)\n\n"#
@@ -46,8 +47,8 @@ public struct Day6: AdventDay {
       .reduce(0, +)
     
     return AdventAnswer(
-      partOne: allUniqueYesesCount,  // 6585
-      partTwo: allInclusiveYesesCount  // 3276
+      partOne: allUniqueYesesCount,
+      partTwo: allInclusiveYesesCount
     )
   }
 }

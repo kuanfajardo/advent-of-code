@@ -7,14 +7,15 @@ public struct Day10: AdventDay {
 
   public static let year = 2020
   public static let day = 10
+  public static let answer = AdventAnswer(partOne: 2664, partTwo: 148098383347712)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let joltages = Int.matches(in: input)
     let effectiveJoltages = joltages + [0, joltages.max()! + 3]
 
     return AdventAnswer(
-      partOne: partOne(joltages: effectiveJoltages),  // 2664
-      partTwo: partTwo(joltages: effectiveJoltages)  // 148098383347712
+      partOne: partOne(joltages: effectiveJoltages),
+      partTwo: partTwo(joltages: effectiveJoltages)
     )
   }
 

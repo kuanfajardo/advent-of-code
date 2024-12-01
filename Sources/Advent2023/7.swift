@@ -18,6 +18,8 @@ public struct Day7: AdventDay {
   
   public static let day = 7
   
+  public static let answer = AdventAnswer(partOne: 251_216_224, partTwo: 250_825_971)
+  
   struct Hand: Comparable {
 
     enum Card: Int, Comparable {
@@ -152,8 +154,8 @@ public struct Day7: AdventDay {
     }
     
     return AdventAnswer(
-      partOne: try solve(jStrategy: .jack),  // 251_216_224
-      partTwo: try solve(jStrategy: .joker)  // 250_825_971
+      partOne: try solve(jStrategy: .jack),
+      partTwo: try solve(jStrategy: .joker)
     )
   }
   

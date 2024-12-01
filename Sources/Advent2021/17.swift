@@ -6,6 +6,7 @@ public struct Day17: AdventDay {
 
   public static let year = 2021
   public static let day = 17
+  public static let answer = AdventAnswer(partOne: 4656, partTwo: 1908)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let target = Target(xRange: 241...273, yRange: (-97)...(-63))
@@ -17,8 +18,8 @@ public struct Day17: AdventDay {
     .filter { $0.1 }
     
     return AdventAnswer(
-      partOne: validPaths.map { $0.0.map(\.1).max()! }.max()!,  // 4656
-      partTwo: validPaths.count  // 1908
+      partOne: validPaths.map { $0.0.map(\.1).max()! }.max()!,
+      partTwo: validPaths.count
     )
   }
 }

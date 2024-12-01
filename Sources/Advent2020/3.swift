@@ -6,7 +6,8 @@ public struct Day3: AdventDay {
   
   public static let year = 2020
   public static let day = 3
-  
+  public static let answer = AdventAnswer(partOne: 284, partTwo: 3510149120)
+
   // MARK: Models
   
   enum Space: Character {
@@ -84,10 +85,10 @@ public struct Day3: AdventDay {
     ]
     
     return AdventAnswer(
-      partOne: numTreesHit(ridingDown: rows, using: partOneSlope),  // 284
+      partOne: numTreesHit(ridingDown: rows, using: partOneSlope),
       partTwo: partTwoSlopes
         .map { numTreesHit(ridingDown: rows, using: $0) }
-        .reduce(1, *)  // 3510149120
+        .reduce(1, *)
     )
   }
   

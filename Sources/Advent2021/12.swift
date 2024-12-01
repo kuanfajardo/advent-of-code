@@ -5,6 +5,7 @@ public struct Day12: AdventDay {
 
   public static let year = 2021
   public static let day = 12
+  public static let answer = AdventAnswer(partOne: 5756, partTwo: 144603)
 
   // MARK: Graph Types
 
@@ -53,8 +54,8 @@ public struct Day12: AdventDay {
     }
 
     return AdventAnswer(
-      partOne: allPathsFromStartToEnd(in: caveNetwork, visitor: SmallCaveOnlyOnceVisitor.self).count,  // 5756
-      partTwo: allPathsFromStartToEnd(in: caveNetwork, visitor: AtMostOneSmallCaveTwiceVisitor.self).count  // 144603
+      partOne: allPathsFromStartToEnd(in: caveNetwork, visitor: SmallCaveOnlyOnceVisitor.self).count,
+      partTwo: allPathsFromStartToEnd(in: caveNetwork, visitor: AtMostOneSmallCaveTwiceVisitor.self).count
     )
   }
 

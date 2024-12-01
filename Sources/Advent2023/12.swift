@@ -14,6 +14,8 @@ public struct Day12: AdventDay {
   
   public static var day: Int { 12 }
   
+  public static let answer = AdventAnswer.unsolved
+  
   public static let temp =
     """
     ???.### 1,1,3
@@ -29,8 +31,8 @@ public struct Day12: AdventDay {
     let counts = records.map { self.numberOfPossibleSolutions(entries: $0.entries, damagedCounts: $0.damagedCounts) }
 
     return AdventAnswer(
-      partOne: counts.map(\.count).reduce(0, +),  // 7169
-      partTwo: 3
+      partOne: counts.map(\.count).reduce(0, +),
+      partTwo: ""
     )
   }
   

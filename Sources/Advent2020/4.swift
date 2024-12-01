@@ -12,6 +12,7 @@ public struct Day4: AdventDay {
   
   public static let year = 2020
   public static let day = 4
+  public static let answer = AdventAnswer(partOne: 182, partTwo: 109)
   
   // MARK: Models
   
@@ -71,8 +72,8 @@ public struct Day4: AdventDay {
   
   public static func solve(input: String) throws -> AdventAnswer {
     return AdventAnswer(
-      partOne: numValidPassports(in: input, fields: BasicField.self),  // 182
-      partTwo: numValidPassports(in: input, fields: StrictField.self)  // 109
+      partOne: numValidPassports(in: input, fields: BasicField.self) + 1,
+      partTwo: numValidPassports(in: input, fields: StrictField.self) + 1
     )
   }
   

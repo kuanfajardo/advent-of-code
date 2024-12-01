@@ -8,6 +8,8 @@ public struct Day5: AdventDay {
 
   public static let year = 2022
   public static let day = 5
+  
+  public static let answer = AdventAnswer.unsolved // (partOne: "QMBMJDFTD", partTwo: "NBTVTJNFJ")
 
   public static func solve(input: String) throws -> AdventAnswer {
     let lines = input.components(separatedBy: .newlines)
@@ -31,8 +33,8 @@ public struct Day5: AdventDay {
     }
         
     return AdventAnswer(
-      partOne: topCratesString(from: part1Stacks),  // QMBMJDFTD
-      partTwo: topCratesString(from: part2Stacks)  // NBTVTJNFJ
+      partOne: topCratesString(from: part1Stacks),
+      partTwo: topCratesString(from: part2Stacks)
     )
   }
   

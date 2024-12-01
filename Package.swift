@@ -96,5 +96,16 @@ let package = Package(
       ],
       swiftSettings: [.enableUpcomingFeature("BareSlashRegexLiterals")]
     ),
+    .testTarget(
+      name: "AdventTests",
+      dependencies: [
+        "AdventCommon",
+        "Advent2020",
+        "Advent2021",
+        "Advent2022",
+        "Advent2023",
+        "Advent2024",
+      ]
+    )
   ]
 )

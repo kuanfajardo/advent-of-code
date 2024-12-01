@@ -7,6 +7,7 @@ public struct Day9: AdventDay {
 
   public static let year = 2020
   public static let day = 9
+  public static let answer = AdventAnswer(partOne: 3199139634, partTwo: 438559930)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let numbers = Int.matches(in: input)
@@ -15,8 +16,8 @@ public struct Day9: AdventDay {
     let contiguousSummands = try firstContiguousListOfNumbers(in: numbers, thatAddTo: firstInvalidNumber)
 
     return AdventAnswer(
-      partOne: firstInvalidNumber,  // 3199139634
-      partTwo: contiguousSummands.minAndMax().map { $0.min + $0.max }!  // 438559930
+      partOne: firstInvalidNumber,
+      partTwo: contiguousSummands.minAndMax().map { $0.min + $0.max }!
     )
   }
 

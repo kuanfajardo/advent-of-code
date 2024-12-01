@@ -6,12 +6,13 @@ public struct Day6: AdventDay {
 
   public static let year = 2021
   public static let day = 6
+  public static let answer = AdventAnswer(partOne: 374927, partTwo: 1687617803407)
 
   public static func solve(input: String) throws -> AdventAnswer {
     let fishAges = Int.matches(in: input)
     return AdventAnswer(
-      partOne: numberOfLanternfish(afterDays: 80, startingFishAges: fishAges), // 374927
-      partTwo: numberOfLanternfish(afterDays: 256, startingFishAges: fishAges)  // 1687617803407
+      partOne: numberOfLanternfish(afterDays: 80, startingFishAges: fishAges),
+      partTwo: numberOfLanternfish(afterDays: 256, startingFishAges: fishAges)
     )
   }
 
