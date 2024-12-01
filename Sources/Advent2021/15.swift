@@ -52,7 +52,7 @@ public struct Day15: AdventDay {
     return graph.shortestPathDijkstra(
       from: Vertex2D(x: 0, y: 0),
       to: Vertex2D(x: size - 1, y: size - 1)
-    )
+    )!.cost
   }
 }
 

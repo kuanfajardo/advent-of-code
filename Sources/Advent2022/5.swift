@@ -12,7 +12,7 @@ public struct Day5: AdventDay {
   public static func solve(input: String) throws -> AdventAnswer {
     let lines = input.components(separatedBy: .newlines)
     let splitLines = lines.split(separator: "")
-    var crateLines = Array(splitLines[0])
+    let crateLines = Array(splitLines[0])
     let instructionLines = Array(splitLines[1])
     
     let stacks = self.makeStacks(from: crateLines)
