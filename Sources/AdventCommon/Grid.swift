@@ -85,10 +85,42 @@ public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible, E
   
   public var valueColumns: [[Element]] { self._columns }
   
-  public func makeIterator() -> IndexingIterator<[Entry]> {
-    product(0..<self.numColumns, 0..<self.numRows)
-      .map { (x, y) in Entry(x: x, y: y, value: self._columns[x][y]) }
-      .makeIterator()
+  // MARK: Sequence
+  
+  public func makeIterator() -> Iterator {
+    Iterator(numRows: self.numRows, numColumns: self.numColumns, columns: self._columns)
+  }
+  
+  public struct Iterator: IteratorProtocol {
+    
+    let numRows: Int
+    let numColumns: Int
+    let columns: [[Element]]
+    
+    var nextX = 0
+    var nextY = 0
+    
+    public mutating func next() -> Entry? {
+      let isXValid = self.nextX < self.numColumns
+      let isYValid = self.nextY < self.numRows
+      
+      guard isXValid && isYValid else { return nil }
+      
+      let returnValue = Entry(
+        x: self.nextX,
+        y: self.nextY,
+        value: self.columns[self.nextX][self.nextY]
+      )
+
+      if self.nextX + 1 < self.numColumns {
+        self.nextX += 1
+      } else {
+        self.nextX = 0
+        self.nextY += 1
+      }
+      
+      return returnValue
+    }
   }
   
   public var coordinates: [Coordinate] {

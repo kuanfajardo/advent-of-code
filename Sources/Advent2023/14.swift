@@ -55,7 +55,7 @@ public struct Day14: AdventDay {
     var previousGrids: [Grid<Entry>: Int] = [
       grid: 0
     ]
-    
+
     var previousCycles: [Int: Grid<Entry>] = [
       0: grid
     ]
