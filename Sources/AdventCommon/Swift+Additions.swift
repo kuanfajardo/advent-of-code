@@ -37,5 +37,21 @@ extension Int {
   public var mostSignificantBit: Int {
     Int(flsl(self))
   }
+  
+  public enum Sign {
+    case positive
+    case negative
+    case zero
+  }
+
+  public var isPositive: Bool { self > 0 }
+
+  public var isNegative: Bool { self < 0 }
+
+  public var sign: Sign {
+    if self > 0 { .positive }
+    else if self < 0 { .negative }
+    else { .zero }
+  }
 }
 

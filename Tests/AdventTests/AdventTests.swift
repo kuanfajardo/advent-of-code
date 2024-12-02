@@ -17,6 +17,7 @@ final class AdventTests: XCTestCase {
   func test2024() throws {
     let days: [AdventDay.Type] = [
       Advent2024.Day1.self,
+      Advent2024.Day2.self,
     ]
 
     for day in days {
@@ -39,6 +40,7 @@ final class AdventTests: XCTestCase {
       Advent2023.Day11.self,
       Advent2023.Day12.self,
       Advent2023.Day13.self,
+      // Advent2023.Day14.self, Takes too long to run!
     ]
 
     for day in days {
