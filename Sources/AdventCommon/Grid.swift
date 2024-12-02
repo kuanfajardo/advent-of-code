@@ -12,7 +12,7 @@ public struct Coordinate: Hashable, CustomStringConvertible {
   public var description: String { "(\(self.x), \(self.y))" }
 }
 
-public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible {
+public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible, Equatable, Hashable {
   
   public struct Entry: Hashable {
     public let coordinate: Coordinate
@@ -136,6 +136,29 @@ public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible {
     return self.right(of: bottom)
   }
   
+  // MARK: Direction-Agnostic
+  
+  public enum Direction {
+    case top, left, bottom, right, topLeft, topRight, bottomLeft, bottomRight
+  }
+  
+  public func coordinate(
+    inDirection direction: Direction,
+    of coordinate: Coordinate
+  ) -> Coordinate? {
+    let method: (Coordinate) -> Coordinate? = switch direction {
+    case .top: self.top(of:)
+    case .bottom: self.bottom(of:)
+    case .left: self.left(of:)
+    case .right: self.right(of:)
+    case .topLeft: self.topLeft(of:)
+    case .topRight: self.topRight(of:)
+    case .bottomLeft: self.bottomLeft(of:)
+    case .bottomRight: self.bottomRight(of:)
+    }
+    return method(coordinate)
+  }
+  
   // MARK: Adjacent
   
   public func coordinatesAdjacent(to coordinate: Coordinate, includeDiagonals: Bool) -> [Coordinate] {
@@ -189,6 +212,19 @@ public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible {
       row.map(String.init(describing:)).joined(separator: "")
     }
     .joined(separator: "\n")
+  }
+  
+  // MARK: Equatable
+  
+  public static func == (lhs: Grid<Element>, rhs: Grid<Element>) -> Bool {
+    // Only need to check one storage format.
+    return lhs._rows == rhs._rows
+  }
+  
+  // MARK: Hashable
+  
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self._rows)
   }
 }
 
