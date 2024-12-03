@@ -85,7 +85,7 @@ public struct Day14: AdventDay {
 
   private static func tiltGrid(
     _ grid: inout Grid<Entry>,
-    inDirection direction: Grid<Entry>.Direction
+    inDirection direction: Direction
   ) {
     while true {
       var didEdit = false
@@ -115,19 +115,5 @@ public struct Day14: AdventDay {
       return numRocksInRow * distanceFromSouth
     }
     .reduce(0, +)
-  }
-}
-
-extension Grid {
-  
-  public static func make(
-    adventInput input: String,
-    entryType: Element.Type
-  ) -> Grid<Element> where Element: RawRepresentable, Element.RawValue == Character {
-    let rows = input.components(separatedBy: .newlines)
-    let typedRows = rows.map { row in
-      row.map { Element(rawValue: $0)! }
-    }
-    return Grid(rows: typedRows)
   }
 }

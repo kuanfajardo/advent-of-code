@@ -10,6 +10,25 @@ public struct Coordinate: Hashable, CustomStringConvertible {
   }
   
   public var description: String { "(\(self.x), \(self.y))" }
+  
+  public static let zero = Coordinate(x: 0, y: 0)
+}
+
+public enum Direction: CustomStringConvertible {
+  case top, left, bottom, right, topLeft, topRight, bottomLeft, bottomRight
+  
+  public var description: String {
+    switch self {
+    case .top: "⬆️"
+    case .topRight: "↗️"
+    case .right: "➡️"
+    case .bottomRight: "↘️"
+    case .bottom: "⬇️"
+    case .bottomLeft: "↙️"
+    case .left: "⬅️"
+    case .topLeft: "↖️"
+    }
+  }
 }
 
 public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible, Equatable, Hashable {
@@ -123,11 +142,43 @@ public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible, E
     }
   }
   
+  // MARK: Coordinates
+  
   public var coordinates: [Coordinate] {
     product(0..<self.numColumns, 0..<self.numRows)
       .map(Coordinate.init(x:y:))
   }
   
+  // MARK: Corners and Edges
+  
+  public var topLeft: Coordinate { .zero }
+  
+  public var topRight: Coordinate { .init(x: self.numColumns - 1, y: 0) }
+  
+  public var bottomLeft: Coordinate { .init(x: 0, y: self.numRows - 1) }
+  
+  public var bottomRight: Coordinate { .init(x: self.numColumns - 1, y: self.numRows - 1) }
+  
+  public var allCorners: [Coordinate] {
+    [self.topLeft, self.topRight, self.bottomLeft, self.bottomRight]
+  }
+  
+  public var topEdge: [Coordinate] {
+    (0..<self.numColumns).map { Coordinate(x: $0, y: 0) }
+  }
+  
+  public var leftEdge: [Coordinate] {
+    (0..<self.numRows).map { Coordinate(x: 0, y: $0) }
+  }
+  
+  public var bottomEdge: [Coordinate] {
+    (0..<self.numColumns).map { Coordinate(x: $0, y: self.numRows - 1) }
+  }
+  
+  public var rightEdge: [Coordinate] {
+    (0..<self.numRows).map { Coordinate(x: self.numColumns - 1, y: $0) }
+  }
+
   // MARK: NESW (Coordinates)
   
   public func top(of coordinate: Coordinate) -> Coordinate? {
@@ -169,10 +220,6 @@ public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible, E
   }
   
   // MARK: Direction-Agnostic
-  
-  public enum Direction {
-    case top, left, bottom, right, topLeft, topRight, bottomLeft, bottomRight
-  }
   
   public func coordinate(
     inDirection direction: Direction,
@@ -271,3 +318,33 @@ public func invertArray<S>(_ array: [[S]]) -> [[S]] {
   
   return inverted.map { row in row.map { $0! } }
 }
+
+// MARK: Advent-Specific (Remove if make Grid own Package)
+
+extension Grid {
+  
+  public static func make(
+    adventInput input: String,
+    entryType: Element.Type
+  ) -> Grid<Element> where Element: RawRepresentable, Element.RawValue == Character {
+    let rows = input.components(separatedBy: .newlines)
+    let typedRows = rows.map { row in
+      row.map { Element(rawValue: $0)! }
+    }
+    return Grid(rows: typedRows)
+  }
+  
+  public static func make<Input>(
+    adventInput input: String,
+    entryType: Element.Type,
+    inputType: Input.Type,
+    transform: (Input) -> Element
+  ) -> Grid<Element> where Input: RawRepresentable, Input.RawValue == Character {
+    let rows = input.components(separatedBy: .newlines)
+    let typedRows = rows.map { row in
+      row.map { transform(Input(rawValue: $0)!) }
+    }
+    return Grid(rows: typedRows)
+  }
+}
+
