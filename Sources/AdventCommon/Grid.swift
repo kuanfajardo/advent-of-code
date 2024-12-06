@@ -14,8 +14,11 @@ public struct Coordinate: Hashable, CustomStringConvertible {
   public static let zero = Coordinate(x: 0, y: 0)
 }
 
-public enum Direction: CustomStringConvertible {
+public enum Direction: CustomStringConvertible, CaseIterable {
   case top, left, bottom, right, topLeft, topRight, bottomLeft, bottomRight
+  
+  public static let nonDiagonals: [Direction] = [.top, .left, .bottom, .right]
+  public static let diagonals: [Direction] = [.topLeft, .topRight, .bottomLeft, .bottomRight]
   
   public var description: String {
     switch self {
@@ -372,5 +375,11 @@ extension RawRepresentable where RawValue == Character {
 extension Int: AdventInputGridEntry {
   public init(_ character: Character) {
     self = Int(String(character))!
+  }
+}
+
+extension Character: AdventInputGridEntry {
+  public init(_ character: Character) {
+    self = character
   }
 }

@@ -8,7 +8,7 @@ import ArgumentParser
 import Foundation
 
 // Update this to run a different advent day!
-let adventDay = Advent2024.Day3.self
+let adventDay = Advent2024.Day4.self
 
 @main
 struct Runner: ParsableCommand {
