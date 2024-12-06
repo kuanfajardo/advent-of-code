@@ -334,6 +334,17 @@ extension Grid {
     return Grid(rows: typedRows)
   }
   
+  public static func make(
+    adventInput input: String,
+    entryType: Element.Type
+  ) -> Grid<Element> where Element: AdventInputGridEntry {
+    let rows = input.components(separatedBy: .newlines)
+    let typedRows = rows.map { row in
+      row.map(Element.init)
+    }
+    return Grid(rows: typedRows)
+  }
+  
   public static func make<Input>(
     adventInput input: String,
     entryType: Element.Type,
@@ -348,3 +359,18 @@ extension Grid {
   }
 }
 
+public protocol AdventInputGridEntry {
+  init(_ character: Character)
+}
+
+extension RawRepresentable where RawValue == Character {
+  public init(_ character: Character) {
+    self.init(rawValue: character)!
+  }
+}
+
+extension Int: AdventInputGridEntry {
+  public init(_ character: Character) {
+    self = Int(String(character))!
+  }
+}
