@@ -47,29 +47,33 @@ public struct Day6: AdventDay {
   }
   
   private static func part1(grid: Grid<Entry>) throws -> Int {
-    guard case .exit(let visited) = self.runSimulation(grid: grid) else {
+    let start = DirectedCoordinate(
+      coordinate: grid.first { $0.value == .guard }!.coordinate,
+      direction: .top
+    )
+    guard case .exit(let visited) = self.runSimulation(grid: grid, start: start) else {
       throw AdventError.noSolutionFound
     }
     return Set(visited.map(\.coordinate)).count
   }
   
   private static func part2(grid: Grid<Entry>) -> Int {
+    let start = DirectedCoordinate(
+      coordinate: grid.first { $0.value == .guard }!.coordinate,
+      direction: .top
+    )
     return grid
       .filter { $0.value == .empty }
       .filter {
         var newGrid = grid
         newGrid[$0.coordinate] = .blocked
-        return self.runSimulation(grid: newGrid) == .infiniteLoop
+        return self.runSimulation(grid: newGrid, start: start) == .infiniteLoop
       }
       .count
   }
   
-  private static func runSimulation(grid: Grid<Entry>) -> SimulationResult {
-    let start = DirectedCoordinate(
-      coordinate: grid.first { $0.value == .guard }!.coordinate,
-      direction: .top
-    )
-    var visited = Set<DirectedCoordinate>()
+  private static func runSimulation(grid: Grid<Entry>, start: DirectedCoordinate) -> SimulationResult {
+    var visited = Set<DirectedCoordinate>(minimumCapacity: grid.numRows * grid.numRows)
     var coordinate = start
     while let nextCoordinate = self.nextCoordinate(after: coordinate, in: grid) {
       guard !visited.contains(nextCoordinate) else {

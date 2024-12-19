@@ -70,6 +70,12 @@ public struct DirectedCoordinate: Hashable, CustomStringConvertible {
   public var description: String {
     "\(self.coordinate) \(self.direction)"
   }
+  
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self.coordinate.x)
+    hasher.combine(self.coordinate.y)
+    hasher.combine(self.direction.rawValue)
+  }
 }
 
 public struct Grid<Element: Hashable>: Sequence, CustomDebugStringConvertible, Equatable, Hashable {
