@@ -14,8 +14,15 @@ public struct Coordinate: Hashable, CustomStringConvertible {
   public static let zero = Coordinate(x: 0, y: 0)
 }
 
-public enum Direction: CustomStringConvertible, CaseIterable {
-  case top, left, bottom, right, topLeft, topRight, bottomLeft, bottomRight
+public enum Direction: Int, CustomStringConvertible, CaseIterable {
+  case top = 0
+  case left = 270
+  case bottom = 180
+  case right = 90
+  case topLeft = 315
+  case topRight = 45
+  case bottomLeft = 225
+  case bottomRight = 135
   
   public static let nonDiagonals: [Direction] = [.top, .left, .bottom, .right]
   public static let diagonals: [Direction] = [.topLeft, .topRight, .bottomLeft, .bottomRight]
@@ -31,6 +38,37 @@ public enum Direction: CustomStringConvertible, CaseIterable {
     case .left: "⬅️"
     case .topLeft: "↖️"
     }
+  }
+  
+  public enum RotationDegrees: Int {
+    case _0 = 0
+    case _45 = 45
+    case _90 = 90
+    case _135 = 135
+    case _180 = 180
+    case _225 = 225
+    case _270 = 270
+    case _315 = 315
+  }
+  
+  public func rotated(by rotation: RotationDegrees, clockwise: Bool) -> Direction {
+    let sign = clockwise ? 1 : -1
+    return Direction(rawValue: (self.rawValue + rotation.rawValue * sign) % 360)!
+  }
+}
+
+public struct DirectedCoordinate: Hashable, CustomStringConvertible {
+  public let coordinate: Coordinate
+
+  public let direction: Direction
+  
+  public init(coordinate: Coordinate, direction: Direction) {
+    self.coordinate = coordinate
+    self.direction = direction
+  }
+  
+  public var description: String {
+    "\(self.coordinate) \(self.direction)"
   }
 }
 
