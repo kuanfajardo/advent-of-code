@@ -56,15 +56,6 @@ public struct Day16: AdventDay {
     )
   }
   
-  struct DirectedCoordinate: Hashable, CustomStringConvertible {
-    let coordinate: Coordinate
-    let direction: Direction
-    
-    var description: String {
-      "\(self.coordinate) \(self.direction)"
-    }
-  }
-  
   private static func numberOfEnergizedTiles(
     in grid: Grid<Entry>,
     startingAt start: DirectedCoordinate

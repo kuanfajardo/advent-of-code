@@ -55,3 +55,12 @@ extension Int {
   }
 }
 
+
+extension Int {
+  public static func fromMatchGroup<S: StringProtocol>(_ s: S) throws -> Int {
+    guard let int = Int(String(s)) else {
+      throw AdventError.malformedInput(input: s)
+    }
+    return int
+  }
+}
